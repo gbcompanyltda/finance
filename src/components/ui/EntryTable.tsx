@@ -1,3 +1,5 @@
+import { Pencil, Trash2 } from "lucide-react";
+
 export interface EntryRow {
   id: string;
   title: string;
@@ -13,34 +15,6 @@ interface EntryTableProps {
   onEdit: (id: string) => void;
   onDelete: (id: string) => void;
   emptyMessage?: string;
-}
-
-function EditIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
-      <path
-        d="M4 20h4l10.5-10.5a2.12 2.12 0 0 0-3-3L5 17v3Z"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function DeleteIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
-      <path
-        d="M5 7h14M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
 }
 
 export function EntryTable({
@@ -77,14 +51,14 @@ export function EntryTable({
                   aria-label="Editar"
                   className="rounded-md p-2 text-ink-muted hover:bg-page hover:text-series-1"
                 >
-                  <EditIcon />
+                  <Pencil size={16} aria-hidden />
                 </button>
                 <button
                   onClick={() => onDelete(row.id)}
                   aria-label="Excluir"
                   className="rounded-md p-2 text-ink-muted hover:bg-page hover:text-critical"
                 >
-                  <DeleteIcon />
+                  <Trash2 size={16} aria-hidden />
                 </button>
               </div>
             </div>

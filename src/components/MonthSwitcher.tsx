@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { Plus, Trash2 } from "lucide-react";
 import { useFinanceStore } from "@/lib/store";
 
 export function MonthSwitcher({ onNewMonth }: { onNewMonth: () => void }) {
@@ -58,7 +59,7 @@ export function MonthSwitcher({ onNewMonth }: { onNewMonth: () => void }) {
         title="Criar novo mês"
         aria-label="Criar novo mês"
       >
-        <span aria-hidden>+</span> <span className="hidden sm:inline">Mês</span>
+        <Plus size={16} aria-hidden /> <span className="hidden sm:inline">Mês</span>
       </button>
       {sorted.length > 1 && (
         <button
@@ -67,7 +68,7 @@ export function MonthSwitcher({ onNewMonth }: { onNewMonth: () => void }) {
           title="Excluir mês atual"
           aria-label="Excluir mês atual"
         >
-          🗑
+          <Trash2 size={16} aria-hidden />
         </button>
       )}
     </div>

@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { LayoutDashboard, Wallet, Receipt, PiggyBank } from "lucide-react";
 
 const NAV = [
-  { href: "/", label: "Painel", icon: "📊" },
-  { href: "/renda", label: "Renda", icon: "💰" },
-  { href: "/despesas", label: "Despesas", icon: "🧾" },
-  { href: "/economia", label: "Economia", icon: "🏦" },
+  { href: "/", label: "Painel", icon: LayoutDashboard },
+  { href: "/renda", label: "Renda", icon: Wallet },
+  { href: "/despesas", label: "Despesas", icon: Receipt },
+  { href: "/economia", label: "Economia", icon: PiggyBank },
 ];
 
 export function BottomNav() {
@@ -20,6 +21,7 @@ export function BottomNav() {
     >
       {NAV.map((item) => {
         const active = pathname === item.href;
+        const Icon = item.icon;
         return (
           <Link
             key={item.href}
@@ -29,9 +31,7 @@ export function BottomNav() {
               active ? "text-series-1" : "text-ink-muted"
             }`}
           >
-            <span className="text-xl leading-none" aria-hidden>
-              {item.icon}
-            </span>
+            <Icon className="size-5" aria-hidden />
             {item.label}
           </Link>
         );

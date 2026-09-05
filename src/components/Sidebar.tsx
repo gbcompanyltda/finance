@@ -2,21 +2,22 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { LayoutDashboard, Wallet, Receipt, PiggyBank, LogOut } from "lucide-react";
 
 const NAV = [
-  { href: "/", label: "Painel", icon: "📊" },
-  { href: "/renda", label: "Renda", icon: "💰" },
-  { href: "/despesas", label: "Despesas", icon: "🧾" },
-  { href: "/economia", label: "Economia", icon: "🏦" },
+  { href: "/", label: "Painel", icon: LayoutDashboard },
+  { href: "/renda", label: "Renda", icon: Wallet },
+  { href: "/despesas", label: "Despesas", icon: Receipt },
+  { href: "/economia", label: "Economia", icon: PiggyBank },
 ];
 
-export function Sidebar() {
+export function Sidebar({ onSignOut }: { onSignOut?: () => void }) {
   const pathname = usePathname();
 
   return (
     <aside className="hidden w-56 shrink-0 flex-col border-r border-border bg-surface p-4 md:flex">
       <div className="mb-6 flex items-center gap-2 px-2">
-        <span className="text-xl">💸</span>
+        <Wallet className="size-5 text-series-1" aria-hidden />
         <span className="text-sm font-semibold text-ink-primary">
           Minhas Finanças
         </span>
@@ -24,6 +25,7 @@ export function Sidebar() {
       <nav className="flex flex-col gap-1">
         {NAV.map((item) => {
           const active = pathname === item.href;
+          const Icon = item.icon;
           return (
             <Link
               key={item.href}
@@ -34,12 +36,19 @@ export function Sidebar() {
                   : "text-ink-secondary hover:bg-page hover:text-ink-primary"
               }`}
             >
-              <span aria-hidden>{item.icon}</span>
+              <Icon className="size-4" aria-hidden />
               {item.label}
             </Link>
           );
         })}
       </nav>
+      <button
+        onClick={onSignOut}
+        className="mt-auto flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-ink-secondary transition-colors hover:bg-page hover:text-critical"
+      >
+        <LogOut className="size-4" aria-hidden />
+        Sair
+      </button>
     </aside>
   );
 }

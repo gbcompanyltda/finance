@@ -1,21 +1,35 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Source_Code_Pro } from "next/font/google";
 import "./globals.css";
 import { AppShell } from "@/components/AppShell";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const sans = Inter({
+  variable: "--font-inter-sans",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const mono = Source_Code_Pro({
+  variable: "--font-source-code-mono",
   subsets: ["latin"],
 });
+
+const isGithubActions = process.env.GITHUB_ACTIONS === "true";
+const repoName = process.env.GITHUB_REPOSITORY?.split("/")[1] ?? "";
+const basePath = isGithubActions && repoName ? `/${repoName}` : "";
 
 export const metadata: Metadata = {
   title: "Minhas Finanças",
   description: "Controle financeiro pessoal",
+  manifest: `${basePath}/manifest.webmanifest`,
+  icons: {
+    icon: `${basePath}/icon.png`,
+    apple: `${basePath}/apple-touch-icon.png`,
+  },
+  appleWebApp: {
+    capable: true,
+    title: "Finanças",
+    statusBarStyle: "black-translucent",
+  },
 };
 
 export const viewport: Viewport = {
@@ -36,7 +50,7 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${sans.variable} ${mono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <AppShell>{children}</AppShell>

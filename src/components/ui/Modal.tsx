@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { X } from "lucide-react";
 
 interface ModalProps {
   title: string;
@@ -41,7 +42,7 @@ export function Modal({ title, open, onClose, children }: ModalProps) {
             aria-label="Fechar"
             className="-m-2 rounded-md p-2 text-ink-muted hover:bg-page hover:text-ink-primary"
           >
-            ✕
+            <X size={16} aria-hidden />
           </button>
         </div>
         {children}
