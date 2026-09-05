@@ -1,4 +1,5 @@
 import { Pencil, Trash2 } from "lucide-react";
+import { renderCategoryIcon } from "@/lib/categoryIcons";
 
 export interface EntryRow {
   id: string;
@@ -7,6 +8,18 @@ export interface EntryRow {
   value: React.ReactNode;
   badge?: React.ReactNode;
   note?: string;
+  /** Free text used to look up a category icon (defaults to title if omitted). */
+  category?: string;
+}
+
+function CategoryIcon({ row }: { row: EntryRow }) {
+  const icon = renderCategoryIcon(15, row.category, row.title);
+  if (!icon) return null;
+  return (
+    <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-page text-ink-secondary">
+      {icon}
+    </span>
+  );
 }
 
 interface EntryTableProps {
@@ -42,9 +55,12 @@ export function EntryTable({
             className="rounded-xl border border-border bg-surface p-3.5"
           >
             <div className="flex items-start justify-between gap-3">
-              <span className="min-w-0 flex-1 truncate text-sm font-medium text-ink-primary">
-                {row.title}
-              </span>
+              <div className="flex min-w-0 flex-1 items-center gap-2">
+                <CategoryIcon row={row} />
+                <span className="min-w-0 truncate text-sm font-medium text-ink-primary">
+                  {row.title}
+                </span>
+              </div>
               <div className="flex shrink-0 items-center gap-1">
                 <button
                   onClick={() => onEdit(row.id)}
@@ -103,7 +119,12 @@ export function EntryTable({
                 key={row.id}
                 className="border-b border-border last:border-0 hover:bg-page/60"
               >
-                <td className="whitespace-nowrap px-4 py-2.5 text-ink-primary">{row.title}</td>
+                <td className="whitespace-nowrap px-4 py-2.5 text-ink-primary">
+                  <div className="flex items-center gap-2">
+                    <CategoryIcon row={row} />
+                    {row.title}
+                  </div>
+                </td>
                 {badgeLabel && (
                   <td className="whitespace-nowrap px-4 py-2.5">
                     {row.badge ?? <span className="text-ink-muted">—</span>}

@@ -85,6 +85,7 @@ export default function ExpensesPage() {
             </span>
           ),
           badge: e.tag,
+          category: `${e.tag ?? ""} ${e.description}`,
           note: e.note,
         }))}
         onEdit={(id) => {

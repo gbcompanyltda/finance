@@ -19,7 +19,7 @@ export function LoginScreen() {
   }
 
   return (
-    <div className="flex min-h-screen w-full items-center justify-center bg-white px-4 py-10">
+    <div className="flex min-h-screen w-full items-center justify-center bg-white px-4 py-10 pt-[max(2.5rem,env(safe-area-inset-top))] pb-[max(2.5rem,env(safe-area-inset-bottom))]">
       <div className="w-full max-w-sm">
         <div className="mb-8 flex flex-col items-center text-center">
           <div className="mb-4 flex size-14 items-center justify-center rounded-2xl bg-[#0b2545]">

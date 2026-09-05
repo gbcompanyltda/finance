@@ -50,7 +50,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     <div className="flex min-h-screen w-full">
       <Sidebar onSignOut={signOut} />
       <div className="flex min-h-screen flex-1 flex-col">
-        <header className="sticky top-0 z-30 flex items-center justify-between gap-2 border-b border-border bg-surface/95 px-4 py-3 backdrop-blur supports-[backdrop-filter]:bg-surface/80 md:px-6">
+        <header className="sticky top-0 z-30 flex items-center justify-between gap-2 border-b border-border bg-surface/95 px-4 pb-3 pt-[max(0.75rem,env(safe-area-inset-top))] backdrop-blur supports-[backdrop-filter]:bg-surface/80 md:px-6 md:pt-3">
           <div className="min-w-0">
             <p className="truncate text-xs font-medium uppercase tracking-wide text-ink-muted">
               {monthIdToLabel(currentMonthId)}

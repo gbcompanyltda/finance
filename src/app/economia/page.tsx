@@ -68,7 +68,7 @@ export default function SavingsPage() {
                       const value = Number(e.target.value);
                       if (!Number.isNaN(value)) updateAccount(currentMonthId, { ...a, balance: value });
                     }}
-                    className="w-28 rounded-md border border-border bg-page px-2 py-1.5 text-sm text-ink-primary"
+                    className="w-28 rounded-md border border-border bg-page px-2 py-1.5 text-base text-ink-primary sm:text-sm"
                   />
                 </div>
                 <button

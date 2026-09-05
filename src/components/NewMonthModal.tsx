@@ -42,7 +42,7 @@ export function NewMonthModal({
           <label className="flex-1 text-sm text-ink-secondary">
             Mês
             <select
-              className="mt-1 w-full rounded-md border border-border bg-page px-2 py-2 text-sm text-ink-primary"
+              className="mt-1 w-full rounded-md border border-border bg-page px-2 py-2 text-base text-ink-primary sm:text-sm"
               value={month}
               onChange={(e) => setMonth(Number(e.target.value))}
             >
@@ -57,7 +57,7 @@ export function NewMonthModal({
             Ano
             <input
               type="number"
-              className="mt-1 w-full rounded-md border border-border bg-page px-2 py-2 text-sm text-ink-primary"
+              className="mt-1 w-full rounded-md border border-border bg-page px-2 py-2 text-base text-ink-primary sm:text-sm"
               value={year}
               onChange={(e) => setYear(Number(e.target.value))}
             />
