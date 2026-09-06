@@ -11,6 +11,10 @@ const NAV = [
   { href: "/economia", label: "Economia", icon: PiggyBank },
 ];
 
+function isActive(pathname: string, href: string) {
+  return href === "/" ? pathname === "/" : pathname.replace(/\/$/, "") === href;
+}
+
 export function Sidebar({ onSignOut }: { onSignOut?: () => void }) {
   const pathname = usePathname();
 
@@ -24,7 +28,7 @@ export function Sidebar({ onSignOut }: { onSignOut?: () => void }) {
       </div>
       <nav className="flex flex-col gap-1">
         {NAV.map((item) => {
-          const active = pathname === item.href;
+          const active = isActive(pathname, item.href);
           const Icon = item.icon;
           return (
             <Link

@@ -11,6 +11,10 @@ const NAV = [
   { href: "/economia", label: "Economia", icon: PiggyBank },
 ];
 
+function isActive(pathname: string, href: string) {
+  return href === "/" ? pathname === "/" : pathname.replace(/\/$/, "") === href;
+}
+
 export function BottomNav() {
   const pathname = usePathname();
 
@@ -20,7 +24,7 @@ export function BottomNav() {
       aria-label="Navegação principal"
     >
       {NAV.map((item) => {
-        const active = pathname === item.href;
+        const active = isActive(pathname, item.href);
         const Icon = item.icon;
         return (
           <Link
