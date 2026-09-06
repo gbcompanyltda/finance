@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { LayoutDashboard, Wallet, Receipt, PiggyBank, LogOut } from "lucide-react";
+import { Logo } from "./Logo";
 
 const NAV = [
   { href: "/", label: "Painel", icon: LayoutDashboard },
@@ -20,11 +21,12 @@ export function Sidebar({ onSignOut }: { onSignOut?: () => void }) {
 
   return (
     <aside className="sticky top-0 hidden h-screen w-56 shrink-0 flex-col self-start overflow-y-auto border-r border-border bg-surface p-4 md:flex">
-      <div className="mb-6 flex items-center gap-2 px-2">
-        <Wallet className="size-5 text-series-1" aria-hidden />
-        <span className="text-sm font-semibold text-ink-primary">
-          Minhas Finanças
-        </span>
+      <div className="mb-6 px-2">
+        <Logo
+          markClassName="size-8 rounded-lg"
+          iconClassName="size-4"
+          textClassName="text-sm"
+        />
       </div>
       <nav className="flex flex-col gap-1">
         {NAV.map((item) => {

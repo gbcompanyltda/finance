@@ -18,7 +18,7 @@ const repoName = process.env.GITHUB_REPOSITORY?.split("/")[1] ?? "";
 const basePath = isGithubActions && repoName ? `/${repoName}` : "";
 
 export const metadata: Metadata = {
-  title: "Minhas Finanças",
+  title: "Finance",
   description: "Controle financeiro pessoal",
   manifest: `${basePath}/manifest.webmanifest`,
   icons: {
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
   appleWebApp: {
     capable: true,
-    title: "Finanças",
+    title: "Finance",
     statusBarStyle: "black-translucent",
   },
 };

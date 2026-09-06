@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Wallet } from "lucide-react";
 import { useAuthStore } from "@/lib/authStore";
+import { Logo } from "./Logo";
 
 export function LoginScreen() {
   const signIn = useAuthStore((s) => s.signIn);
@@ -20,16 +20,16 @@ export function LoginScreen() {
 
   return (
     <div className="flex min-h-screen w-full flex-col md:flex-row">
-      <div className="flex flex-col items-center justify-center gap-3 bg-[#0b2545] px-6 py-10 pt-[max(2.5rem,env(safe-area-inset-top))] md:w-1/2 md:gap-4 md:py-0">
-        <div className="flex size-14 items-center justify-center rounded-2xl bg-white/10 md:size-20 md:rounded-3xl">
-          <Wallet className="size-7 text-white md:size-10" aria-hidden />
-        </div>
-        <div className="text-center">
-          <h1 className="text-xl font-semibold text-white md:text-3xl">Minhas Finanças</h1>
-          <p className="mt-1 text-sm text-white/70 md:text-base">
-            Controle financeiro pessoal
-          </p>
-        </div>
+      <div className="flex flex-col items-center justify-center gap-4 bg-[#0b2545] px-6 py-10 pt-[max(2.5rem,env(safe-area-inset-top))] md:w-1/2 md:py-0">
+        <Logo
+          tone="light"
+          layout="col"
+          gapClassName="gap-3 md:gap-4"
+          markClassName="size-14 rounded-2xl md:size-20 md:rounded-3xl"
+          iconClassName="size-7 md:size-10"
+          textClassName="text-2xl md:text-4xl"
+        />
+        <p className="text-sm text-white/70 md:text-base">Controle financeiro pessoal</p>
       </div>
 
       <div className="flex flex-1 items-center justify-center bg-white px-4 py-10 pb-[max(2.5rem,env(safe-area-inset-bottom))] md:w-1/2">

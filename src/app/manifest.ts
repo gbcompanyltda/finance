@@ -8,14 +8,14 @@ export const dynamic = "force-static";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Minhas Finanças",
-    short_name: "Finanças",
+    name: "Finance",
+    short_name: "Finance",
     description: "Controle financeiro pessoal",
     start_url: `${basePath}/`,
     scope: `${basePath}/`,
     display: "standalone",
     background_color: "#f9f9f7",
-    theme_color: "#2a78d6",
+    theme_color: "#0b2545",
     icons: [
       {
         src: `${basePath}/icon-192.png`,
