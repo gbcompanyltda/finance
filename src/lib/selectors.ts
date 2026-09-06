@@ -185,8 +185,8 @@ export function monthlySpendHistory(
 }
 
 /**
- * Série para a sparkline da Home: caixa acumulado por dia do mês, ancorado para
- * terminar no saldo atual em conta.
+ * Série para a sparkline da Home: saldo acumulado (renda − despesas) por dia do
+ * mês, ancorado para terminar em `endValue`.
  */
 export function balanceSparkline(
   month: MonthData,

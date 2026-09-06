@@ -29,10 +29,10 @@ export function HomeScreen() {
     .filter((id) => id < currentMonthId)
     .sort()
     .at(-1);
-  const prevTotal = prevId ? computeTotals(months[prevId]).accountsTotal : null;
+  const prevBalance = prevId ? computeTotals(months[prevId]).balance : null;
   const changePct =
-    prevTotal && prevTotal !== 0
-      ? ((totals.accountsTotal - prevTotal) / Math.abs(prevTotal)) * 100
+    prevBalance && prevBalance !== 0
+      ? ((totals.balance - prevBalance) / Math.abs(prevBalance)) * 100
       : null;
 
   const monthBudget = Math.max(0, ...month.spendingLimits.map((l) => l.limit));
@@ -42,7 +42,7 @@ export function HomeScreen() {
   const spark = balanceSparkline(
     month,
     daysInMonth(currentMonthId),
-    totals.accountsTotal
+    totals.balance
   );
 
   const recent = buildActivity(month).slice(0, 3);
@@ -51,9 +51,9 @@ export function HomeScreen() {
   return (
     <div className="pb-4">
       <section className="px-5 pb-5 pt-6">
-        <p className="kicker">Saldo em conta</p>
+        <p className="kicker">Saldo</p>
         <p className="mt-3 text-[clamp(32px,11vw,50px)] font-extrabold leading-none tracking-[-0.055em] text-ink-primary">
-          {formatCurrency(totals.accountsTotal)}
+          {formatCurrency(totals.balance)}
         </p>
         {changePct !== null && (
           <div className="mt-3 flex items-center gap-2">
