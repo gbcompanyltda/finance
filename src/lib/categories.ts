@@ -24,6 +24,12 @@ const NAMED: Record<string, string> = {
   lazer: "var(--cat-1)",
   transporte: "var(--cat-5)",
   casa: "var(--cat-2)",
+  aluguel: "var(--cat-2)",
+  internet: "var(--cat-4)",
+  agua: "var(--cat-3)",
+  luz: "var(--cat-5)",
+  gas: "var(--cat-6)",
+  outros: "var(--cat-1)",
 };
 
 const COMBINING_START = 0x0300;
