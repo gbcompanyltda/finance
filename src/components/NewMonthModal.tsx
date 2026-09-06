@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Modal } from "./ui/Modal";
+import { inputClass, labelClass, primaryButtonClass, ghostButtonClass } from "./ui/formStyles";
 import { useFinanceStore } from "@/lib/store";
 import { monthIdToLabel, todayMonthId } from "@/lib/format";
 
@@ -39,10 +40,10 @@ export function NewMonthModal({
     <Modal title="Novo mês" open={open} onClose={onClose}>
       <div className="flex flex-col gap-4">
         <div className="flex gap-3">
-          <label className="flex-1 text-sm text-ink-secondary">
+          <label className={`${labelClass} flex-1`}>
             Mês
             <select
-              className="mt-1 w-full rounded-md border border-border bg-page px-2 py-2 text-base text-ink-primary sm:text-sm"
+              className={inputClass}
               value={month}
               onChange={(e) => setMonth(Number(e.target.value))}
             >
@@ -53,11 +54,11 @@ export function NewMonthModal({
               ))}
             </select>
           </label>
-          <label className="w-28 text-sm text-ink-secondary">
+          <label className={`${labelClass} w-28`}>
             Ano
             <input
               type="number"
-              className="mt-1 w-full rounded-md border border-border bg-page px-2 py-2 text-base text-ink-primary sm:text-sm"
+              className={inputClass}
               value={year}
               onChange={(e) => setYear(Number(e.target.value))}
             />
@@ -74,22 +75,17 @@ export function NewMonthModal({
         </label>
 
         {alreadyExists && (
-          <p className="text-sm text-critical">
-            O mês {monthIdToLabel(id)} já existe.
-          </p>
+          <p className="text-sm text-critical">O mês {monthIdToLabel(id)} já existe.</p>
         )}
 
         <div className="mt-2 flex justify-end gap-2">
-          <button
-            onClick={onClose}
-            className="rounded-md px-3 py-2 text-sm text-ink-secondary hover:bg-page"
-          >
+          <button onClick={onClose} className={ghostButtonClass}>
             Cancelar
           </button>
           <button
             onClick={handleCreate}
             disabled={alreadyExists}
-            className="rounded-md bg-series-1 px-3 py-2 text-sm font-medium text-white disabled:opacity-50"
+            className={primaryButtonClass}
           >
             Criar mês
           </button>

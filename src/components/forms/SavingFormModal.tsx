@@ -2,13 +2,14 @@
 
 import { useState } from "react";
 import { Modal } from "../ui/Modal";
-import { inputClass, labelClass } from "../ui/formStyles";
+import { inputClass, labelClass, primaryButtonClass, ghostButtonClass } from "../ui/formStyles";
 import type { SavingsTransaction } from "@/lib/types";
 import { todayISO } from "@/lib/format";
 
 interface SavingFormModalProps {
   onClose: () => void;
   onSave: (item: Omit<SavingsTransaction, "id">, id?: string) => void;
+  onDelete?: () => void;
   initial?: SavingsTransaction | null;
   accountOptions: string[];
 }
@@ -16,6 +17,7 @@ interface SavingFormModalProps {
 export function SavingFormModal({
   onClose,
   onSave,
+  onDelete,
   initial,
   accountOptions,
 }: SavingFormModalProps) {
@@ -37,7 +39,7 @@ export function SavingFormModal({
   }
 
   return (
-    <Modal title={initial ? "Editar economia" : "Nova economia"} open onClose={onClose}>
+    <Modal title={initial ? "Editar reserva" : "Nova reserva"} open onClose={onClose}>
       <form onSubmit={handleSubmit} className="flex flex-col gap-3">
         <label className={labelClass}>
           Descrição
@@ -97,20 +99,30 @@ export function SavingFormModal({
             onChange={(e) => setNote(e.target.value)}
           />
         </label>
-        <div className="mt-2 flex justify-end gap-2">
-          <button
-            type="button"
-            onClick={onClose}
-            className="rounded-md px-3 py-2 text-sm text-ink-secondary hover:bg-page"
-          >
-            Cancelar
-          </button>
-          <button
-            type="submit"
-            className="rounded-md bg-series-1 px-3 py-2 text-sm font-medium text-white"
-          >
-            Salvar
-          </button>
+
+        <div className="mt-2 flex items-center justify-between gap-2">
+          {initial && onDelete ? (
+            <button
+              type="button"
+              onClick={() => {
+                onDelete();
+                onClose();
+              }}
+              className="px-2 py-2 text-sm font-bold text-critical"
+            >
+              Excluir
+            </button>
+          ) : (
+            <span />
+          )}
+          <div className="flex gap-2">
+            <button type="button" onClick={onClose} className={ghostButtonClass}>
+              Cancelar
+            </button>
+            <button type="submit" className={primaryButtonClass}>
+              Salvar
+            </button>
+          </div>
         </div>
       </form>
     </Modal>

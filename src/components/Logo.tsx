@@ -1,34 +1,37 @@
-import { Wallet } from "lucide-react";
+import { WalletMark } from "./WalletMark";
 
 interface LogoProps {
-  tone?: "light" | "dark";
+  tone?: "navy" | "light";
   layout?: "row" | "col";
+  /** Mark size in px. Wordmark scales via `textClassName`. */
+  markSize?: number;
   gapClassName?: string;
-  markClassName?: string;
-  iconClassName?: string;
+  /** Font-size / weight classes for the "Finance" wordmark. */
   textClassName?: string;
 }
 
 export function Logo({
-  tone = "dark",
+  tone = "navy",
   layout = "row",
-  gapClassName = "gap-2.5",
-  markClassName = "size-10 rounded-2xl",
-  iconClassName = "size-5",
-  textClassName = "text-xl",
+  markSize = 40,
+  gapClassName = "gap-3",
+  textClassName = "text-2xl",
 }: LogoProps) {
-  const textColor = tone === "light" ? "text-white" : "text-[#0b2545]";
-  const markBg = tone === "light" ? "bg-white/10" : "bg-[#0b2545]";
-  const layoutClass = layout === "col" ? "flex-col" : "flex-row";
+  const light = tone === "light";
+  const color = light ? "#ffffff" : "#0b2545";
+  const dot = light ? "#6fa8e8" : "#2a78d6";
 
   return (
-    <span className={`inline-flex items-center ${layoutClass} ${gapClassName}`}>
+    <span
+      className={`inline-flex items-center ${
+        layout === "col" ? "flex-col" : "flex-row"
+      } ${gapClassName}`}
+    >
+      <WalletMark size={markSize} color={color} dotColor={dot} />
       <span
-        className={`flex shrink-0 items-center justify-center ${markBg} ${markClassName}`}
+        className={`font-extrabold tracking-tighter ${textClassName}`}
+        style={{ color }}
       >
-        <Wallet className={`text-white ${iconClassName}`} aria-hidden />
-      </span>
-      <span className={`font-bold tracking-tight ${textColor} ${textClassName}`}>
         Finance
       </span>
     </span>

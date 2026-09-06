@@ -1,109 +1,91 @@
 @import "tailwindcss";
 
+/*
+ * Finance — sistema visual do handoff (design_handoff_finance_app).
+ * Navy #0b2545 + accent #2a78d6, fundo branco, raio 0, réguas navy de 2px,
+ * zero sombra de card, tudo alinhado à esquerda. Tela clara apenas.
+ */
+
 :root {
   color-scheme: light;
-  --page: #f9f9f7;
-  --surface: #fcfcfb;
-  --ink-primary: #0b0b0b;
-  --ink-secondary: #52514e;
-  --ink-muted: #898781;
-  --gridline: #e1e0d9;
-  --border: rgba(11, 11, 11, 0.1);
-  --baseline: #c3c2b7;
 
-  --series-1: #2a78d6; /* blue   – renda */
-  --series-2: #eb6834; /* orange – gastos variáveis */
-  --series-3: #1baf7a; /* aqua   – economia */
-  --series-4: #eda100; /* yellow – fixos */
-  --series-5: #e87ba4; /* magenta */
-  --series-6: #008300; /* green */
-  --series-7: #4a3aa7; /* violet */
-  --series-8: #e34948; /* red */
+  --page: #ffffff;
+  --surface: #ffffff;
 
-  --good: #0ca30c;
-  --warning: #fab219;
-  --serious: #ec835a;
-  --critical: #d03b3b;
-  --success-text: #006300;
+  --ink-primary: #0b2545;
+  --ink-secondary: rgba(11, 37, 69, 0.6);
+  --ink-muted: rgba(11, 37, 69, 0.5);
+  --ink-faint: rgba(11, 37, 69, 0.42);
+
+  --accent: #2a78d6;
+
+  /* Réguas */
+  --rule: #0b2545; /* 2px entre seções principais */
+  --rule-soft: rgba(11, 37, 69, 0.3); /* 2px entre seções secundárias */
+  --border: rgba(11, 37, 69, 0.13); /* 1px entre linhas de lista */
+
+  /* Superfícies derivadas de #0b2545 por alpha */
+  --group-header: rgba(11, 37, 69, 0.05);
+  --key-bg: rgba(11, 37, 69, 0.06);
+  --avatar-bg: rgba(11, 37, 69, 0.09);
+  --track: rgba(11, 37, 69, 0.12);
+  --column-idle: rgba(11, 37, 69, 0.18);
+  --chip-border: rgba(11, 37, 69, 0.28);
+  --backdrop: rgba(11, 37, 69, 0.45);
+  --save-disabled: rgba(11, 37, 69, 0.35);
+
+  /* Rampa de categoria (navy -> azul) */
+  --cat-1: #0b2545;
+  --cat-2: #12395f;
+  --cat-3: #1d5285;
+  --cat-4: #2a78d6;
+  --cat-5: #6fa8e8;
+  --cat-6: #b9d3f2;
+
+  /* Ação destrutiva real (excluir mês/lançamento) — fora do sistema de sinais */
+  --critical: #b3261e;
+
+  --font-fallback: system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
 @theme inline {
   --color-page: var(--page);
   --color-surface: var(--surface);
+
   --color-ink-primary: var(--ink-primary);
   --color-ink-secondary: var(--ink-secondary);
   --color-ink-muted: var(--ink-muted);
-  --color-gridline: var(--gridline);
+  --color-ink-faint: var(--ink-faint);
+
+  --color-accent: var(--accent);
+  --color-rule: var(--rule);
+  --color-rule-soft: var(--rule-soft);
   --color-border: var(--border);
-  --color-baseline: var(--baseline);
 
-  --color-series-1: var(--series-1);
-  --color-series-2: var(--series-2);
-  --color-series-3: var(--series-3);
-  --color-series-4: var(--series-4);
-  --color-series-5: var(--series-5);
-  --color-series-6: var(--series-6);
-  --color-series-7: var(--series-7);
-  --color-series-8: var(--series-8);
+  --color-group-header: var(--group-header);
+  --color-key-bg: var(--key-bg);
+  --color-avatar-bg: var(--avatar-bg);
+  --color-track: var(--track);
+  --color-column-idle: var(--column-idle);
+  --color-chip-border: var(--chip-border);
 
-  --color-good: var(--good);
-  --color-warning: var(--warning);
-  --color-serious: var(--serious);
+  --color-cat-1: var(--cat-1);
+  --color-cat-2: var(--cat-2);
+  --color-cat-3: var(--cat-3);
+  --color-cat-4: var(--cat-4);
+  --color-cat-5: var(--cat-5);
+  --color-cat-6: var(--cat-6);
+
   --color-critical: var(--critical);
-  --color-success-text: var(--success-text);
 
-  --font-sans: var(--font-inter-sans);
-  --font-mono: var(--font-source-code-mono);
+  --font-sans: var(--font-archivo), var(--font-fallback);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:where(:not([data-theme="light"])) {
-    color-scheme: dark;
-    --page: #0d0d0d;
-    --surface: #1a1a19;
-    --ink-primary: #ffffff;
-    --ink-secondary: #c3c2b7;
-    --ink-muted: #898781;
-    --gridline: #2c2c2a;
-    --border: rgba(255, 255, 255, 0.1);
-    --baseline: #383835;
-
-    --series-1: #3987e5;
-    --series-2: #d95926;
-    --series-3: #199e70;
-    --series-4: #c98500;
-    --series-5: #d55181;
-    --series-6: #008300;
-    --series-7: #9085e9;
-    --series-8: #e66767;
-
-    --good: #0ca30c;
-    --warning: #fab219;
-    --serious: #ec835a;
-    --critical: #e66767;
-    --success-text: #0ca30c;
-  }
-}
-
-:root[data-theme="dark"] {
-  color-scheme: dark;
-  --page: #0d0d0d;
-  --surface: #1a1a19;
-  --ink-primary: #ffffff;
-  --ink-secondary: #c3c2b7;
-  --ink-muted: #898781;
-  --gridline: #2c2c2a;
-  --border: rgba(255, 255, 255, 0.1);
-  --baseline: #383835;
-
-  --series-1: #3987e5;
-  --series-2: #d95926;
-  --series-3: #199e70;
-  --series-4: #c98500;
-  --series-5: #d55181;
-  --series-6: #008300;
-  --series-7: #9085e9;
-  --series-8: #e66767;
+/* Raio 0 em toda a UI do app. Sem exceção. */
+*,
+*::before,
+*::after {
+  border-radius: 0 !important;
 }
 
 * {
@@ -113,16 +95,37 @@
 body {
   background: var(--page);
   color: var(--ink-primary);
-  font-family: var(--font-sans), system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-family: var(--font-archivo), var(--font-fallback);
+  -webkit-font-smoothing: antialiased;
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--baseline);
-  border-radius: 999px;
+  background: var(--track);
+}
+
+/* Réguas reutilizáveis (padrão do protótipo: <div class="rule" />) */
+.rule {
+  height: 2px;
+  background: var(--rule);
+  flex: none;
+}
+.rule-soft {
+  height: 2px;
+  background: var(--rule-soft);
+  flex: none;
+}
+
+.kicker {
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
 }
 
 @keyframes sheet-in {
@@ -133,21 +136,12 @@ body {
     transform: translateY(0);
   }
 }
-@keyframes dialog-in {
-  from {
-    opacity: 0;
-    transform: scale(0.97);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-.modal-sheet {
+.sheet-in {
   animation: sheet-in 0.22s cubic-bezier(0.32, 0.72, 0, 1);
 }
-@media (min-width: 640px) {
-  .modal-sheet {
-    animation: dialog-in 0.15s ease-out;
+
+@media (prefers-reduced-motion: reduce) {
+  .sheet-in {
+    animation: none;
   }
 }

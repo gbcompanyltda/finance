@@ -5,6 +5,18 @@ export function formatCurrency(value: number): string {
   });
 }
 
+/** "−R$ 84,20" / "+R$ 4.200,00" — sinal explícito, menos tipográfico (U+2212). */
+export function formatSigned(value: number): string {
+  const sign = value < 0 ? "−" : "+";
+  return `${sign}${formatCurrency(Math.abs(value))}`;
+}
+
+/** "R$ 3.220" — sem centavos, para agregados (barras, orçamento, médias). */
+export function formatRounded(value: number): string {
+  const rounded = Math.round(Math.abs(value));
+  return `${value < 0 ? "−" : ""}R$ ${rounded.toLocaleString("pt-BR")}`;
+}
+
 export function formatCompactCurrency(value: number): string {
   const abs = Math.abs(value);
   if (abs >= 1_000_000) {
@@ -79,4 +91,30 @@ export function todayISO(): string {
 export function daysInMonth(monthId: string): number {
   const [y, m] = monthId.split("-").map(Number);
   return new Date(y, m, 0).getDate();
+}
+
+const MONTH_SHORT = [
+  "jan", "fev", "mar", "abr", "mai", "jun",
+  "jul", "ago", "set", "out", "nov", "dez",
+];
+
+/** "Jul" a partir de "2026-07". */
+export function shortMonthName(monthId: string): string {
+  const [, m] = monthId.split("-").map(Number);
+  const label = MONTH_SHORT[((m ?? 1) - 1) % 12] ?? "";
+  return label.charAt(0).toUpperCase() + label.slice(1);
+}
+
+/** Rótulo de grupo de data: "Hoje", "Ontem" ou "4 set". */
+export function relativeDateLabel(iso: string, todayIso: string = todayISO()): string {
+  if (iso === todayIso) return "Hoje";
+
+  const [ty, tm, td] = todayIso.split("-").map(Number);
+  const yesterday = new Date(ty, tm - 1, td - 1);
+  const yIso = `${yesterday.getFullYear()}-${String(yesterday.getMonth() + 1).padStart(2, "0")}-${String(yesterday.getDate()).padStart(2, "0")}`;
+  if (iso === yIso) return "Ontem";
+
+  const [, m, d] = iso.split("-").map(Number);
+  if (!m || !d) return iso;
+  return `${d} ${MONTH_SHORT[(m - 1) % 12]}`;
 }

@@ -1,76 +1,96 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { LogOut } from "lucide-react";
-import { Sidebar } from "./Sidebar";
+import { useEffect } from "react";
+import { usePathname } from "next/navigation";
+import { Plus } from "lucide-react";
 import { BottomNav } from "./BottomNav";
-import { MonthSwitcher } from "./MonthSwitcher";
-import { NewMonthModal } from "./NewMonthModal";
 import { LoginScreen } from "./LoginScreen";
 import { LoadingScreen } from "./LoadingScreen";
+import { NewTransactionSheet } from "./NewTransactionSheet";
+import { WalletMark } from "./WalletMark";
+import { Avatar, initialsFrom } from "./ui/kit";
 import { useFinanceStore } from "@/lib/store";
 import { useAuthStore } from "@/lib/authStore";
-import { monthIdToLabel } from "@/lib/format";
+import { useUIStore } from "@/lib/uiStore";
+
+const TITLES: Record<string, string> = {
+  "/": "Início",
+  "/atividade": "Atividade",
+  "/orcamento": "Orçamento",
+  "/analises": "Análises",
+  "/conta": "Conta",
+};
 
 export function AppShell({ children }: { children: React.ReactNode }) {
-  const [newMonthOpen, setNewMonthOpen] = useState(false);
-  const currentMonthId = useFinanceStore((s) => s.currentMonthId);
+  const pathname = usePathname();
   const ready = useFinanceStore((s) => s.ready);
   const loadForUser = useFinanceStore((s) => s.loadForUser);
   const resetFinance = useFinanceStore((s) => s.reset);
   const session = useAuthStore((s) => s.session);
   const authLoading = useAuthStore((s) => s.loading);
-  const signOut = useAuthStore((s) => s.signOut);
+  const addOpen = useUIStore((s) => s.addOpen);
+  const openAdd = useUIStore((s) => s.openAdd);
+  const closeAdd = useUIStore((s) => s.closeAdd);
+  const toast = useUIStore((s) => s.toast);
 
   const userId = session?.user.id;
   useEffect(() => {
-    if (userId) {
-      loadForUser(userId);
-    } else {
-      resetFinance();
-    }
+    if (userId) loadForUser(userId);
+    else resetFinance();
   }, [userId, loadForUser, resetFinance]);
 
-  if (authLoading || (session && !ready)) {
-    return <LoadingScreen />;
-  }
+  // Trocar de aba fecha a folha aberta.
+  const path = pathname.replace(/\/$/, "") || "/";
+  useEffect(() => {
+    closeAdd();
+  }, [path, closeAdd]);
 
-  if (!session) {
-    return <LoginScreen />;
-  }
+  if (authLoading || (session && !ready)) return <LoadingScreen />;
+  if (!session) return <LoginScreen />;
+
+  const title = TITLES[path] ?? "Finance";
+  const initials = initialsFrom(session.user.email);
 
   return (
-    <div className="flex min-h-screen w-full">
-      <Sidebar onSignOut={signOut} />
-      <div className="flex min-h-screen flex-1 flex-col">
-        <header className="sticky top-0 z-30 flex items-center justify-between gap-2 border-b border-border bg-surface/95 px-4 pb-3 pt-[max(0.75rem,env(safe-area-inset-top))] backdrop-blur supports-[backdrop-filter]:bg-surface/80 md:px-6 md:pt-3">
-          <div className="min-w-0">
-            <p className="truncate text-xs font-medium uppercase tracking-wide text-ink-muted">
-              {monthIdToLabel(currentMonthId)}
-            </p>
-            <h1 className="truncate text-base font-semibold text-ink-primary md:text-lg">
-              Orçamento do mês
-            </h1>
+    <div className="relative mx-auto flex h-[100dvh] w-full max-w-[430px] flex-col overflow-hidden bg-white">
+      <header className="shrink-0 pt-[max(0.5rem,env(safe-area-inset-top))]">
+        <div className="flex items-center justify-between px-5 pb-[14px] pt-2">
+          <div className="flex items-center gap-[9px]">
+            <WalletMark size={23} color="#0b2545" minimal />
+            <span className="text-[17px] font-extrabold tracking-[-0.045em] text-ink-primary">
+              {title}
+            </span>
           </div>
-          <div className="flex shrink-0 items-center gap-1.5">
-            <MonthSwitcher onNewMonth={() => setNewMonthOpen(true)} />
-            <button
-              onClick={signOut}
-              aria-label="Sair"
-              title="Sair"
-              className="rounded-md p-2 text-ink-muted hover:bg-page hover:text-critical md:hidden"
-            >
-              <LogOut size={18} aria-hidden />
-            </button>
-          </div>
-        </header>
+          <Avatar initials={initials} size={30} />
+        </div>
+        <div className="rule" />
+      </header>
 
-        <main className="flex-1 bg-page p-4 pb-24 md:p-6 md:pb-6">{children}</main>
+      <main className="min-h-0 flex-1 overflow-y-auto overscroll-contain">{children}</main>
 
-        <BottomNav />
-      </div>
+      <BottomNav />
 
-      <NewMonthModal open={newMonthOpen} onClose={() => setNewMonthOpen(false)} />
+      <button
+        type="button"
+        onClick={openAdd}
+        aria-label="Nova transação"
+        className="absolute right-[18px] bottom-[calc(66px+env(safe-area-inset-bottom))] z-40 flex size-[54px] items-center justify-center bg-accent text-white"
+        style={{ boxShadow: "0 4px 14px rgba(11,37,69,.28)" }}
+      >
+        <Plus size={24} strokeWidth={2.4} aria-hidden />
+      </button>
+
+      {addOpen && <NewTransactionSheet />}
+
+      {toast && (
+        <div
+          role="status"
+          className="absolute inset-x-5 bottom-[96px] z-50 bg-[#0b2545] px-[15px] py-[13px] text-[12.5px] font-semibold text-white"
+          style={{ boxShadow: "0 6px 20px rgba(11,37,69,.3)" }}
+        >
+          {toast}
+        </div>
+      )}
     </div>
   );
 }

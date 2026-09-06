@@ -1,5 +1,6 @@
 import type { MonthData, MonthTotals } from "./types";
-import { dayOfMonth } from "./format";
+import { dayOfMonth, relativeDateLabel, shortMonthName, todayISO } from "./format";
+import { FIXED_COLOR, INCOME_COLOR, tagColor } from "./categories";
 
 export function computeTotals(month: MonthData): MonthTotals {
   const incomeTotal = sum(month.income);
@@ -76,4 +77,134 @@ export function groupByTag(month: MonthData): { tag: string; total: number }[] {
   return Array.from(map.entries())
     .map(([tag, total]) => ({ tag, total }))
     .sort((a, b) => b.total - a.total);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Extrato unificado (renda + despesas), no espírito da tela "Activity"        */
+/* -------------------------------------------------------------------------- */
+
+export interface ActivityItem {
+  id: string;
+  source: "income" | "expense";
+  name: string;
+  /** "Renda", "Fixa" ou a tag da despesa variável. */
+  categoryLabel: string;
+  /** Assinado: renda positiva, despesa negativa. */
+  value: number;
+  date: string;
+  /** Pílula de cor da categoria (CSS custom property). */
+  color: string;
+}
+
+export function buildActivity(month: MonthData): ActivityItem[] {
+  const income: ActivityItem[] = month.income.map((i) => ({
+    id: i.id,
+    source: "income",
+    name: i.description,
+    categoryLabel: "Renda",
+    value: Math.abs(i.value),
+    date: i.date,
+    color: INCOME_COLOR,
+  }));
+
+  const expenses: ActivityItem[] = month.expenses.map((e) => ({
+    id: e.id,
+    source: "expense",
+    name: e.description,
+    categoryLabel: e.kind === "fixo" ? "Fixa" : e.tag?.trim() || "Variável",
+    value: -Math.abs(e.value),
+    date: e.date,
+    color: e.kind === "fixo" ? FIXED_COLOR : tagColor(e.tag),
+  }));
+
+  return [...income, ...expenses].sort((a, b) => {
+    if (a.date !== b.date) return a.date < b.date ? 1 : -1;
+    return a.source === b.source ? 0 : a.source === "income" ? -1 : 1;
+  });
+}
+
+export type ActivityFilter = "all" | "spend" | "income";
+
+export function filterActivity(
+  items: ActivityItem[],
+  filter: ActivityFilter
+): ActivityItem[] {
+  if (filter === "spend") return items.filter((i) => i.value < 0);
+  if (filter === "income") return items.filter((i) => i.value > 0);
+  return items;
+}
+
+export interface DateGroup {
+  label: string;
+  items: ActivityItem[];
+}
+
+/** Agrupa por data preservando a ordem de chegada (mais recente primeiro). */
+export function groupByRelativeDate(
+  items: ActivityItem[],
+  todayIso: string = todayISO()
+): DateGroup[] {
+  const order: string[] = [];
+  const bucket = new Map<string, ActivityItem[]>();
+  for (const item of items) {
+    if (!bucket.has(item.date)) {
+      bucket.set(item.date, []);
+      order.push(item.date);
+    }
+    bucket.get(item.date)!.push(item);
+  }
+  return order.map((date) => ({
+    label: relativeDateLabel(date, todayIso),
+    items: bucket.get(date)!,
+  }));
+}
+
+/* -------------------------------------------------------------------------- */
+/* Série histórica de gasto mensal (tela "Insights")                           */
+/* -------------------------------------------------------------------------- */
+
+export interface MonthlySpendPoint {
+  id: string;
+  label: string;
+  total: number;
+}
+
+export function monthlySpendHistory(
+  months: Record<string, MonthData>,
+  currentMonthId: string,
+  count = 6
+): MonthlySpendPoint[] {
+  return Object.keys(months)
+    .filter((id) => id <= currentMonthId)
+    .sort()
+    .slice(-count)
+    .map((id) => {
+      const { fixedTotal, variableTotal } = computeTotals(months[id]);
+      return { id, label: shortMonthName(id), total: fixedTotal + variableTotal };
+    });
+}
+
+/**
+ * Série para a sparkline da Home: caixa acumulado por dia do mês, ancorado para
+ * terminar no saldo atual em conta.
+ */
+export function balanceSparkline(
+  month: MonthData,
+  totalDays: number,
+  endValue: number
+): number[] {
+  const dayNet = new Array(totalDays).fill(0);
+  for (const i of month.income) {
+    const d = dayOfMonth(i.date);
+    if (d >= 1 && d <= totalDays) dayNet[d - 1] += i.value;
+  }
+  for (const e of month.expenses) {
+    const d = dayOfMonth(e.date);
+    if (d >= 1 && d <= totalDays) dayNet[d - 1] -= e.value;
+  }
+  let running = 0;
+  const cumulative = dayNet.map((n) => (running += n));
+  const net = running || 1;
+  // desloca a curva para que o último ponto seja o saldo atual
+  return cumulative.map((c) => endValue - (net - c));
 }

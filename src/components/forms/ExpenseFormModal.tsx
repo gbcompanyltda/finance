@@ -2,22 +2,24 @@
 
 import { useState } from "react";
 import { Modal } from "../ui/Modal";
-import { inputClass, labelClass } from "../ui/formStyles";
+import { inputClass, labelClass, primaryButtonClass, ghostButtonClass } from "../ui/formStyles";
 import type { ExpenseKind, ExpenseTransaction } from "@/lib/types";
 import { todayISO } from "@/lib/format";
 
 interface ExpenseFormModalProps {
   onClose: () => void;
   onSave: (item: Omit<ExpenseTransaction, "id">, id?: string) => void;
+  onDelete?: () => void;
   initial?: ExpenseTransaction | null;
   defaultKind?: ExpenseKind;
 }
 
-const TAG_SUGGESTIONS = ["mercado", "feira", "extra", "presente", "saúde", "lazer"];
+const TAG_SUGGESTIONS = ["mercado", "feira", "extra", "presente", "saúde", "lazer", "transporte"];
 
 export function ExpenseFormModal({
   onClose,
   onSave,
+  onDelete,
   initial,
   defaultKind = "variavel",
 }: ExpenseFormModalProps) {
@@ -90,10 +92,10 @@ export function ExpenseFormModal({
             <button
               type="button"
               onClick={() => setKind("fixo")}
-              className={`flex-1 rounded-md border px-3 py-2 text-sm font-medium ${
+              className={`flex-1 border px-3 py-2 text-sm font-bold ${
                 kind === "fixo"
-                  ? "border-series-1 bg-series-1/10 text-series-1"
-                  : "border-border text-ink-secondary"
+                  ? "border-[#0b2545] bg-[#0b2545] text-white"
+                  : "border-chip-border text-ink-secondary"
               }`}
             >
               Fixa
@@ -101,10 +103,10 @@ export function ExpenseFormModal({
             <button
               type="button"
               onClick={() => setKind("variavel")}
-              className={`flex-1 rounded-md border px-3 py-2 text-sm font-medium ${
+              className={`flex-1 border px-3 py-2 text-sm font-bold ${
                 kind === "variavel"
-                  ? "border-series-2 bg-series-2/10 text-series-2"
-                  : "border-border text-ink-secondary"
+                  ? "border-[#0b2545] bg-[#0b2545] text-white"
+                  : "border-chip-border text-ink-secondary"
               }`}
             >
               Variável / diária
@@ -138,20 +140,30 @@ export function ExpenseFormModal({
             onChange={(e) => setNote(e.target.value)}
           />
         </label>
-        <div className="mt-2 flex justify-end gap-2">
-          <button
-            type="button"
-            onClick={onClose}
-            className="rounded-md px-3 py-2 text-sm text-ink-secondary hover:bg-page"
-          >
-            Cancelar
-          </button>
-          <button
-            type="submit"
-            className="rounded-md bg-series-1 px-3 py-2 text-sm font-medium text-white"
-          >
-            Salvar
-          </button>
+
+        <div className="mt-2 flex items-center justify-between gap-2">
+          {initial && onDelete ? (
+            <button
+              type="button"
+              onClick={() => {
+                onDelete();
+                onClose();
+              }}
+              className="px-2 py-2 text-sm font-bold text-critical"
+            >
+              Excluir
+            </button>
+          ) : (
+            <span />
+          )}
+          <div className="flex gap-2">
+            <button type="button" onClick={onClose} className={ghostButtonClass}>
+              Cancelar
+            </button>
+            <button type="submit" className={primaryButtonClass}>
+              Salvar
+            </button>
+          </div>
         </div>
       </form>
     </Modal>

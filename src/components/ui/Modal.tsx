@@ -24,23 +24,19 @@ export function Modal({ title, open, onClose, children }: ModalProps) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-end justify-center bg-black/40 sm:items-center sm:p-4"
+      className="fixed inset-0 z-50 flex items-end justify-center bg-(--backdrop) sm:items-center sm:p-4"
       onClick={onClose}
     >
       <div
-        className="modal-sheet max-h-[88vh] w-full overflow-y-auto rounded-t-2xl border-t border-border bg-surface p-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] shadow-xl sm:max-w-md sm:rounded-xl sm:border"
+        className="sheet-in max-h-[88vh] w-full overflow-y-auto border-t-2 border-[#0b2545] bg-white p-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] sm:max-w-md sm:border-2"
         onClick={(e) => e.stopPropagation()}
       >
-        <div
-          className="mx-auto mb-3 h-1.5 w-10 shrink-0 rounded-full bg-baseline sm:hidden"
-          aria-hidden
-        />
         <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-base font-semibold text-ink-primary">{title}</h2>
+          <h2 className="text-lg font-extrabold tracking-tight text-ink-primary">{title}</h2>
           <button
             onClick={onClose}
             aria-label="Fechar"
-            className="-m-2 rounded-md p-2 text-ink-muted hover:bg-page hover:text-ink-primary"
+            className="-m-2 p-2 text-ink-muted hover:text-ink-primary"
           >
             <X size={16} aria-hidden />
           </button>
