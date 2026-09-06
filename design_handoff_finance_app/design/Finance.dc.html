@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics><meta name="design_doc_mode" content="canvas">
+<link rel="stylesheet" href="_ds/modernist-9cbeea86-31c3-4447-8c9b-1d2970ddbd32/styles.css">
+<script src="_ds/modernist-9cbeea86-31c3-4447-8c9b-1d2970ddbd32/_ds_bundle.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#eceae5;font-family:"Archivo",system-ui,sans-serif;color:#0b2545}
+a{color:#2a78d6;text-underline-offset:3px}a:hover{color:#0b2545}
+.dv-turn{padding:40px 44px 34px;border-bottom:2px solid rgba(11,37,69,.3);scroll-margin-top:16px}
+.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 20px}
+.dv-tid{font:700 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#0b2545;color:#fff;text-decoration:none}
+.dv-tname{font:700 13px/1.2 "Archivo",system-ui,sans-serif;color:#0b2545}
+.dv-opts{display:flex;flex-wrap:wrap;gap:34px;align-items:flex-start}
+.dv-opt{flex:none;display:flex;flex-direction:column;gap:9px;scroll-margin-top:16px}
+.dv-oid{font:700 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(11,37,69,.1);color:#0b2545;text-decoration:none}
+.dv-olabel{display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 "Archivo",system-ui,sans-serif;color:rgba(11,37,69,.6)}
+.dv-card{max-width:100%;background:#fff;border:1px solid rgba(11,37,69,.14);overflow:hidden}
+.dv-opt:target .dv-oid{background:#2a78d6;color:#fff}
+.dv-next{margin:24px 0 0;font:12px/1.6 "Archivo",system-ui,sans-serif;color:rgba(11,37,69,.55)}
+</style></helmet>
+
+<section class="dv-turn" id="t1">
+<div class="dv-thd"><a class="dv-tid" href="#t1">1</a><span class="dv-tname">Finance — brand mark, chart language, and a tappable prototype</span></div>
+
+<div style="max-width:900px;margin:0 0 30px;display:grid;grid-template-columns:1fr 1fr;gap:0;border:2px solid #0b2545;background:#fff">
+  <div style="padding:22px 24px;border-right:1px solid rgba(11,37,69,.15)">
+    <div style="font:700 10px/1 'Archivo';letter-spacing:.12em;text-transform:uppercase;color:#0b2545;margin-bottom:10px">What I built to</div>
+    <div style="font:400 12.5px/1.65 'Archivo';color:rgba(11,37,69,.75)">Spend tracking &amp; budgets for everyday consumers · neutral, factual copy · balanced density · six screens, all tappable. Mark is exactly your spec: continuous-stroke geometric wallet, navy <strong style="color:#0b2545">#0b2545</strong>, <strong style="color:#0b2545">#2a78d6</strong> used sparingly, white ground. Type is <strong style="color:#0b2545">Archivo</strong> — the geometric grotesque this project's system carries — standing in for the Inter-style lettering you described.</div>
+  </div>
+  <div style="padding:22px 24px">
+    <div style="font:700 10px/1 'Archivo';letter-spacing:.12em;text-transform:uppercase;color:#0b2545;margin-bottom:10px">Open / needs you</div>
+    <div style="font:400 12.5px/1.65 'Archivo';color:rgba(11,37,69,.75)">I couldn't read <strong style="color:#0b2545">gbcompanyltda/finance</strong> this session — the repo is linked but browsing isn't available to me right now, so none of this is reconciled against your real components, routes or data model. Category colours are a navy→blue tonal ramp I derived; swap them for your tokens once I can read the repo.</div>
+  </div>
+</div>
+
+<div class="dv-opts">
+
+<div class="dv-opt" id="1a"><div class="dv-olabel"><a class="dv-oid" href="#1a">1a</a>Lockup sheet — primary, stacked, reverse, favicon sizes</div>
+<div class="dv-card" style="width:840px">
+  <div style="padding:66px 64px 58px;display:flex;align-items:center;justify-content:center;gap:24px">
+    <svg viewBox="0 0 48 48" width="96" height="96" fill="none" style="color:#0b2545;display:block;flex:none">
+      <path d="M12.5 13V10.2C12.5 8.3 14.2 6.9 16.1 7.3L33.6 11" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path>
+      <path d="M12 13H36C39.3 13 42 15.7 42 19V35C42 38.3 39.3 41 36 41H12C8.7 41 6 38.3 6 35V19C6 15.7 8.7 13 12 13Z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"></path>
+      <path d="M42 23H33C30.8 23 29 24.8 29 27C29 29.2 30.8 31 33 31H42" stroke="currentColor" stroke-width="3" stroke-linejoin="round"></path>
+      <circle cx="34.6" cy="27" r="2.1" fill="#2a78d6"></circle>
+    </svg>
+    <div style="font:800 78px/1 'Archivo',system-ui,sans-serif;letter-spacing:-.05em;color:#0b2545">Finance</div>
+  </div>
+  <div style="height:2px;background:#0b2545"></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr">
+    <div style="padding:30px 26px;border-right:1px solid rgba(11,37,69,.15);display:flex;flex-direction:column;gap:16px;align-items:flex-start">
+      <div style="font:700 10px/1 'Archivo';letter-spacing:.12em;text-transform:uppercase;color:rgba(11,37,69,.5)">Stacked</div>
+      <svg viewBox="0 0 48 48" width="50" height="50" fill="none" style="color:#0b2545;display:block">
+        <path d="M12.5 13V10.2C12.5 8.3 14.2 6.9 16.1 7.3L33.6 11" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path>
+        <path d="M12 13H36C39.3 13 42 15.7 42 19V35C42 38.3 39.3 41 36 41H12C8.7 41 6 38.3 6 35V19C6 15.7 8.7 13 12 13Z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"></path>
+        <path d="M42 23H33C30.8 23 29 24.8 29 27C29 29.2 30.8 31 33 31H42" stroke="currentColor" stroke-width="3" stroke-linejoin="round"></path>
+        <circle cx="34.6" cy="27" r="2.1" fill="#2a78d6"></circle>
+      </svg>
+      <div style="font:800 32px/1 'Archivo',system-ui,sans-serif;letter-spacing:-.05em;color:#0b2545">Finance</div>
+    </div>
+    <div style="padding:30px 26px;border-right:1px solid rgba(11,37,69,.15);display:flex;flex-direction:column;gap:16px;align-items:stretch">
+      <div style="font:700 10px/1 'Archivo';letter-spacing:.12em;text-transform:uppercase;color:rgba(11,37,69,.5)">Reverse</div>
+      <div style="background:#0b2545;padding:24px;display:flex;align-items:center;gap:13px">
+        <svg viewBox="0 0 48 48" width="38" height="38" fill="none" style="color:#fff;display:block;flex:none">
+          <path d="M12.5 13V10.2C12.5 8.3 14.2 6.9 16.1 7.3L33.6 11" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path>
+          <path d="M12 13H36C39.3 13 42 15.7 42 19V35C42 38.3 39.3 41 36 41H12C8.7 41 6 38.3 6 35V19C6 15.7 8.7 13 12 13Z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"></path>
+          <path d="M42 23H33C30.8 23 29 24.8 29 27C29 29.2 30.8 31 33 31H42" stroke="currentColor" stroke-width="3" stroke-linejoin="round"></path>
+          <circle cx="34.6" cy="27" r="2.1" fill="#6fa8e8"></circle>
+        </svg>
+        <div style="font:800 27px/1 'Archivo',system-ui,sans-serif;letter-spacing:-.05em;color:#fff">Finance</div>
+      </div>
+    </div>
+    <div style="padding:30px 26px;display:flex;flex-direction:column;gap:16px;align-items:flex-start">
+      <div style="font:700 10px/1 'Archivo';letter-spacing:.12em;text-transform:uppercase;color:rgba(11,37,69,.5)">Favicon · 32 / 24 / 16</div>
+      <div style="display:flex;align-items:flex-end;gap:18px">
+        <svg viewBox="0 0 48 48" width="32" height="32" fill="none" style="color:#0b2545;display:block">
+          <path d="M12 13H36C39.3 13 42 15.7 42 19V35C42 38.3 39.3 41 36 41H12C8.7 41 6 38.3 6 35V19C6 15.7 8.7 13 12 13Z" stroke="currentColor" stroke-width="4" stroke-linejoin="round"></path>
+          <path d="M42 23H33C30.8 23 29 24.8 29 27C29 29.2 30.8 31 33 31H42" stroke="currentColor" stroke-width="4" stroke-linejoin="round"></path>
+        </svg>
+        <svg viewBox="0 0 48 48" width="24" height="24" fill="none" style="color:#0b2545;display:block">
+          <path d="M12 13H36C39.3 13 42 15.7 42 19V35C42 38.3 39.3 41 36 41H12C8.7 41 6 38.3 6 35V19C6 15.7 8.7 13 12 13Z" stroke="currentColor" stroke-width="4.6" stroke-linejoin="round"></path>
+          <path d="M42 23H33C30.8 23 29 24.8 29 27C29 29.2 30.8 31 33 31H42" stroke="currentColor" stroke-width="4.6" stroke-linejoin="round"></path>
+        </svg>
+        <svg viewBox="0 0 48 48" width="16" height="16" fill="none" style="color:#0b2545;display:block">
+          <path d="M12 13H36C39.3 13 42 15.7 42 19V35C42 38.3 39.3 41 36 41H12C8.7 41 6 38.3 6 35V19C6 15.7 8.7 13 12 13Z" stroke="currentColor" stroke-width="5.6" stroke-linejoin="round"></path>
+          <path d="M42 23H33C30.8 23 29 24.8 29 27C29 29.2 30.8 31 33 31H42" stroke="currentColor" stroke-width="5.6" stroke-linejoin="round"></path>
+        </svg>
+      </div>
+      <div style="font:400 11.5px/1.55 'Archivo';color:rgba(11,37,69,.55)">Flap and clasp dot drop below 24px; the slot aperture carries the read.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="dv-opt" id="1b"><div class="dv-olabel"><a class="dv-oid" href="#1b">1b</a>Mark alternatives — three constructions</div>
+<div class="dv-card" style="width:420px">
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr">
+    <div style="padding:30px 18px 22px;border-right:1px solid rgba(11,37,69,.15);display:flex;flex-direction:column;gap:16px;align-items:center">
+      <svg viewBox="0 0 48 48" width="60" height="60" fill="none" style="color:#0b2545;display:block">
+        <path d="M12.5 13V10.2C12.5 8.3 14.2 6.9 16.1 7.3L33.6 11" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path>
+        <path d="M12 13H36C39.3 13 42 15.7 42 19V35C42 38.3 39.3 41 36 41H12C8.7 41 6 38.3 6 35V19C6 15.7 8.7 13 12 13Z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"></path>
+        <path d="M42 23H33C30.8 23 29 24.8 29 27C29 29.2 30.8 31 33 31H42" stroke="currentColor" stroke-width="3" stroke-linejoin="round"></path>
+        <circle cx="34.6" cy="27" r="2.1" fill="#2a78d6"></circle>
+      </svg>
+      <div style="font:700 10px/1.4 'Archivo';text-align:center;color:#0b2545">Wallet<br><span style="font-weight:400;color:rgba(11,37,69,.55)">as briefed</span></div>
+    </div>
+    <div style="padding:30px 18px 22px;border-right:1px solid rgba(11,37,69,.15);display:flex;flex-direction:column;gap:16px;align-items:center">
+      <svg viewBox="0 0 48 48" width="60" height="60" fill="none" style="color:#0b2545;display:block">
+        <path d="M12 13H36C39.3 13 42 15.7 42 19V35C42 38.3 39.3 41 36 41H12C8.7 41 6 38.3 6 35V19C6 15.7 8.7 13 12 13Z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"></path>
+        <path d="M14 32L21.5 24.5L26.5 29.5L35 21" stroke="#2a78d6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path d="M29 21H35V27" stroke="#2a78d6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+      <div style="font:700 10px/1.4 'Archivo';text-align:center;color:#0b2545">Wallet + trend<br><span style="font-weight:400;color:rgba(11,37,69,.55)">reads as growth</span></div>
+    </div>
+    <div style="padding:30px 18px 22px;display:flex;flex-direction:column;gap:16px;align-items:center">
+      <svg viewBox="0 0 48 48" width="60" height="60" fill="none" style="color:#0b2545;display:block">
+        <path d="M13 7H35C38.3 7 41 9.7 41 13V35C41 38.3 38.3 41 35 41H13C9.7 41 7 38.3 7 35V13C7 9.7 9.7 7 13 7Z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"></path>
+        <path d="M17 16H31" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path>
+        <path d="M17 24H27" stroke="#2a78d6" stroke-width="3" stroke-linecap="round"></path>
+        <path d="M17 16V33" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path>
+      </svg>
+      <div style="font:700 10px/1.4 'Archivo';text-align:center;color:#0b2545">Slot monogram<br><span style="font-weight:400;color:rgba(11,37,69,.55)">F in card slots</span></div>
+    </div>
+  </div>
+  <div style="height:2px;background:#0b2545"></div>
+  <div style="padding:18px 20px;font:400 11.5px/1.55 'Archivo';color:rgba(11,37,69,.6)">All three share one geometry: 6px corner radius, 3px stroke, 48px grid, one accent element. The prototype uses the first.</div>
+</div>
+</div>
+
+<div class="dv-opt" id="1c"><div class="dv-olabel"><a class="dv-oid" href="#1c">1c</a>App icon on the home screen</div>
+<div class="dv-card" style="width:300px;padding:34px;display:flex;flex-direction:column;gap:30px;align-items:center">
+  <div style="width:172px;height:172px;border-radius:38px;background:#0b2545;display:flex;align-items:center;justify-content:center">
+    <svg viewBox="0 0 48 48" width="100" height="100" fill="none" style="color:#fff;display:block">
+      <path d="M12.5 13V10.2C12.5 8.3 14.2 6.9 16.1 7.3L33.6 11" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path>
+      <path d="M12 13H36C39.3 13 42 15.7 42 19V35C42 38.3 39.3 41 36 41H12C8.7 41 6 38.3 6 35V19C6 15.7 8.7 13 12 13Z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"></path>
+      <path d="M42 23H33C30.8 23 29 24.8 29 27C29 29.2 30.8 31 33 31H42" stroke="currentColor" stroke-width="3" stroke-linejoin="round"></path>
+      <circle cx="34.6" cy="27" r="2.1" fill="#2a78d6"></circle>
+    </svg>
+  </div>
+  <div style="display:flex;gap:22px;align-items:flex-start">
+    <div style="display:flex;flex-direction:column;gap:8px;align-items:center">
+      <div style="width:58px;height:58px;border-radius:13px;background:#0b2545;display:flex;align-items:center;justify-content:center">
+        <svg viewBox="0 0 48 48" width="34" height="34" fill="none" style="color:#fff;display:block">
+          <path d="M12 13H36C39.3 13 42 15.7 42 19V35C42 38.3 39.3 41 36 41H12C8.7 41 6 38.3 6 35V19C6 15.7 8.7 13 12 13Z" stroke="currentColor" stroke-width="3.4" stroke-linejoin="round"></path>
+          <path d="M42 23H33C30.8 23 29 24.8 29 27C29 29.2 30.8 31 33 31H42" stroke="currentColor" stroke-width="3.4" stroke-linejoin="round"></path>
+        </svg>
+      </div>
+      <div style="font:500 10.5px/1 'Archivo';color:rgba(11,37,69,.75)">Finance</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;align-items:center">
+      <div style="width:58px;height:58px;border-radius:13px;background:#fff;border:1px solid rgba(11,37,69,.18);display:flex;align-items:center;justify-content:center">
+        <svg viewBox="0 0 48 48" width="34" height="34" fill="none" style="color:#0b2545;display:block">
+          <path d="M12 13H36C39.3 13 42 15.7 42 19V35C42 38.3 39.3 41 36 41H12C8.7 41 6 38.3 6 35V19C6 15.7 8.7 13 12 13Z" stroke="currentColor" stroke-width="3.4" stroke-linejoin="round"></path>
+          <path d="M42 23H33C30.8 23 29 24.8 29 27C29 29.2 30.8 31 33 31H42" stroke="currentColor" stroke-width="3.4" stroke-linejoin="round"></path>
+        </svg>
+      </div>
+      <div style="font:500 10.5px/1 'Archivo';color:rgba(11,37,69,.75)">Light</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;align-items:center">
+      <div style="width:58px;height:58px;border-radius:13px;background:#2a78d6;display:flex;align-items:center;justify-content:center">
+        <svg viewBox="0 0 48 48" width="34" height="34" fill="none" style="color:#fff;display:block">
+          <path d="M12 13H36C39.3 13 42 15.7 42 19V35C42 38.3 39.3 41 36 41H12C8.7 41 6 38.3 6 35V19C6 15.7 8.7 13 12 13Z" stroke="currentColor" stroke-width="3.4" stroke-linejoin="round"></path>
+          <path d="M42 23H33C30.8 23 29 24.8 29 27C29 29.2 30.8 31 33 31H42" stroke="currentColor" stroke-width="3.4" stroke-linejoin="round"></path>
+        </svg>
+      </div>
+      <div style="font:500 10.5px/1 'Archivo';color:rgba(11,37,69,.75)">Accent</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="dv-opt" id="1d"><div class="dv-olabel"><a class="dv-oid" href="#1d">1d</a>Prototype — tap the tabs, the + button, filters and chart switcher</div>
+<x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" hint-size="402px,874px">
+<div style="height:100%;box-sizing:border-box;padding:60px 0 24px;display:flex;flex-direction:column;background:#fff;position:relative;overflow:hidden">
+
+  <div style="padding:0 20px 14px;display:flex;align-items:center;justify-content:space-between;flex:none">
+    <div style="display:flex;align-items:center;gap:9px">
+      <svg viewBox="0 0 48 48" width="23" height="23" fill="none" style="color:#0b2545;display:block;flex:none">
+        <path d="M12 13H36C39.3 13 42 15.7 42 19V35C42 38.3 39.3 41 36 41H12C8.7 41 6 38.3 6 35V19C6 15.7 8.7 13 12 13Z" stroke="currentColor" stroke-width="4" stroke-linejoin="round"></path>
+        <path d="M42 23H33C30.8 23 29 24.8 29 27C29 29.2 30.8 31 33 31H42" stroke="currentColor" stroke-width="4" stroke-linejoin="round"></path>
+      </svg>
+      <div style="font:800 17px/1 'Archivo';letter-spacing:-.045em;color:#0b2545">{{ screenTitle }}</div>
+    </div>
+    <div style="width:30px;height:30px;background:rgba(11,37,69,.09);display:flex;align-items:center;justify-content:center;font:700 11px 'Archivo';color:#0b2545">JR</div>
+  </div>
+  <div style="height:2px;background:#0b2545;flex:none"></div>
+
+  <div style="flex:1;overflow:auto;-webkit-overflow-scrolling:touch">
+
+    <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+    <div>
+      <div style="padding:24px 20px 20px">
+        <div style="font:700 10px/1 'Archivo';letter-spacing:.14em;text-transform:uppercase;color:rgba(11,37,69,.5)">Total balance</div>
+        <div style="font:800 50px/1 'Archivo';letter-spacing:-.055em;color:#0b2545;margin-top:12px">{{ balanceText }}</div>
+        <div style="margin-top:12px;display:flex;align-items:center;gap:8px">
+          <div style="background:#0b2545;color:#fff;padding:3px 7px;font:700 11px/1.3 'Archivo'">+2.4%</div>
+          <div style="font:400 12px/1.3 'Archivo';color:rgba(11,37,69,.6)">vs. last month</div>
+        </div>
+        <svg viewBox="0 0 340 60" width="100%" height="56" preserveAspectRatio="none" style="display:block;margin-top:18px">
+          <polyline points="0,46 38,42 76,48 114,33 152,37 190,24 228,29 266,16 304,20 340,8" fill="none" stroke="#0b2545" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"></polyline>
+          <circle cx="340" cy="8" r="4" fill="#2a78d6"></circle>
+        </svg>
+      </div>
+      <div style="height:2px;background:rgba(11,37,69,.3)"></div>
+
+      <div style="padding:20px 20px 8px">
+        <div style="font:700 10px/1 'Archivo';letter-spacing:.14em;text-transform:uppercase;color:rgba(11,37,69,.5);margin-bottom:6px">Accounts</div>
+      </div>
+      <sc-for list="{{ accounts }}" as="a" hint-placeholder-count="3">
+        <div style="padding:14px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(11,37,69,.13)">
+          <div>
+            <div style="font:600 14px/1.2 'Archivo';color:#0b2545">{{ a.name }}</div>
+            <div style="font:400 11.5px/1.4 'Archivo';color:rgba(11,37,69,.55);margin-top:3px">{{ a.meta }}</div>
+          </div>
+          <div style="font:700 15px/1 'Archivo';letter-spacing:-.02em;color:#0b2545">{{ a.amount }}</div>
+        </div>
+      </sc-for>
+
+      <div style="padding:24px 20px 20px">
+        <div style="display:flex;align-items:baseline;justify-content:space-between">
+          <div style="font:700 10px/1 'Archivo';letter-spacing:.14em;text-transform:uppercase;color:rgba(11,37,69,.5)">September spending</div>
+          <div style="font:700 11px/1 'Archivo';color:#2a78d6">{{ monthPctText }}</div>
+        </div>
+        <div style="margin-top:14px;display:flex;align-items:flex-end;justify-content:space-between">
+          <div style="font:800 28px/1 'Archivo';letter-spacing:-.04em;color:#0b2545">{{ monthSpentText }}</div>
+          <div style="font:400 12px/1 'Archivo';color:rgba(11,37,69,.55)">of {{ monthBudgetText }}</div>
+        </div>
+        <div style="margin-top:12px;height:10px;background:rgba(11,37,69,.12);position:relative">
+          <div style="position:absolute;left:0;top:0;bottom:0;background:#0b2545;width:{{ monthPct }}"></div>
+        </div>
+      </div>
+      <div style="height:2px;background:rgba(11,37,69,.3)"></div>
+
+      <div style="padding:20px 20px 8px;display:flex;align-items:baseline;justify-content:space-between">
+        <div style="font:700 10px/1 'Archivo';letter-spacing:.14em;text-transform:uppercase;color:rgba(11,37,69,.5)">Recent</div>
+        <div role="button" tabindex="0" onClick="{{ goSpend }}" style="font:700 11px/1 'Archivo';color:#2a78d6;cursor:pointer">All activity</div>
+      </div>
+      <sc-for list="{{ recent }}" as="t" hint-placeholder-count="3">
+        <div style="padding:13px 20px;display:flex;align-items:center;gap:13px;border-bottom:1px solid rgba(11,37,69,.13)">
+          <div style="width:8px;height:34px;flex:none;background:{{ t.color }}"></div>
+          <div style="flex:1;min-width:0">
+            <div style="font:600 14px/1.2 'Archivo';color:#0b2545;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ t.name }}</div>
+            <div style="font:400 11.5px/1.4 'Archivo';color:rgba(11,37,69,.55);margin-top:3px">{{ t.cat }} · {{ t.date }}</div>
+          </div>
+          <div style="font:700 14px/1 'Archivo';letter-spacing:-.02em;color:{{ t.amtColor }}">{{ t.amt }}</div>
+        </div>
+      </sc-for>
+      <div style="height:16px"></div>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ isSpend }}" hint-placeholder-val="{{ false }}">
+    <div>
+      <div style="padding:16px 20px;display:flex;gap:8px;border-bottom:2px solid rgba(11,37,69,.3)">
+        <sc-for list="{{ filters }}" as="f" hint-placeholder-count="3">
+          <div role="button" tabindex="0" onClick="{{ f.onPick }}" style="padding:8px 13px;font:700 12px/1 'Archivo';cursor:pointer;background:{{ f.bg }};color:{{ f.fg }};border:1px solid {{ f.bd }}">{{ f.label }}</div>
+        </sc-for>
+      </div>
+      <div style="padding:16px 20px 10px;display:flex;align-items:baseline;justify-content:space-between">
+        <div style="font:700 10px/1 'Archivo';letter-spacing:.14em;text-transform:uppercase;color:rgba(11,37,69,.5)">{{ filterCountText }}</div>
+        <div style="font:700 13px/1 'Archivo';color:#0b2545">{{ filterSumText }}</div>
+      </div>
+      <sc-for list="{{ groups }}" as="g" hint-placeholder-count="3">
+        <div>
+          <div style="padding:10px 20px 8px;background:rgba(11,37,69,.05);font:700 10px/1 'Archivo';letter-spacing:.12em;text-transform:uppercase;color:rgba(11,37,69,.6);border-top:1px solid rgba(11,37,69,.13);border-bottom:1px solid rgba(11,37,69,.13)">{{ g.date }}</div>
+          <sc-for list="{{ g.items }}" as="t" hint-placeholder-count="2">
+            <div style="padding:13px 20px;display:flex;align-items:center;gap:13px;border-bottom:1px solid rgba(11,37,69,.13)">
+              <div style="width:8px;height:34px;flex:none;background:{{ t.color }}"></div>
+              <div style="flex:1;min-width:0">
+                <div style="font:600 14px/1.2 'Archivo';color:#0b2545;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ t.name }}</div>
+                <div style="font:400 11.5px/1.4 'Archivo';color:rgba(11,37,69,.55);margin-top:3px">{{ t.cat }}</div>
+              </div>
+              <div style="font:700 14px/1 'Archivo';letter-spacing:-.02em;color:{{ t.amtColor }}">{{ t.amt }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </sc-for>
+      <div style="height:16px"></div>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ isBudget }}" hint-placeholder-val="{{ false }}">
+    <div>
+      <div style="padding:22px 20px 18px">
+        <div style="font:700 10px/1 'Archivo';letter-spacing:.14em;text-transform:uppercase;color:rgba(11,37,69,.5)">Left to spend · September</div>
+        <div style="font:800 46px/1 'Archivo';letter-spacing:-.055em;color:#0b2545;margin-top:12px">{{ leftText }}</div>
+        <div style="font:400 12px/1.4 'Archivo';color:rgba(11,37,69,.6);margin-top:8px">{{ daysLeftText }}</div>
+      </div>
+      <div style="height:2px;background:#0b2545"></div>
+      <sc-for list="{{ budgets }}" as="b" hint-placeholder-count="6">
+        <div style="padding:16px 20px;border-bottom:1px solid rgba(11,37,69,.13)">
+          <div style="display:flex;align-items:baseline;justify-content:space-between">
+            <div style="font:600 14px/1.2 'Archivo';color:#0b2545">{{ b.cat }}</div>
+            <div style="font:400 12px/1 'Archivo';color:rgba(11,37,69,.6)">{{ b.text }}</div>
+          </div>
+          <div style="margin-top:10px;height:8px;background:rgba(11,37,69,.12);position:relative">
+            <div style="position:absolute;left:0;top:0;bottom:0;background:{{ b.color }};width:{{ b.pct }}"></div>
+          </div>
+        </div>
+      </sc-for>
+      <div style="height:16px"></div>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ isInsights }}" hint-placeholder-val="{{ false }}">
+    <div>
+      <div style="padding:16px 20px;display:flex;gap:8px;border-bottom:2px solid rgba(11,37,69,.3)">
+        <sc-for list="{{ chartModes }}" as="c" hint-placeholder-count="3">
+          <div role="button" tabindex="0" onClick="{{ c.onPick }}" style="padding:8px 13px;font:700 12px/1 'Archivo';cursor:pointer;background:{{ c.bg }};color:{{ c.fg }};border:1px solid {{ c.bd }}">{{ c.label }}</div>
+        </sc-for>
+      </div>
+
+      <div style="padding:22px 20px 10px">
+        <div style="font:700 10px/1 'Archivo';letter-spacing:.14em;text-transform:uppercase;color:rgba(11,37,69,.5)">Monthly spend · last 6</div>
+        <div style="font:800 30px/1 'Archivo';letter-spacing:-.045em;color:#0b2545;margin-top:10px">{{ avgMonthText }}<span style="font:400 12px 'Archivo';color:rgba(11,37,69,.55);letter-spacing:0"> avg</span></div>
+      </div>
+
+      <sc-if value="{{ chartBars }}" hint-placeholder-val="{{ true }}">
+      <div style="padding:12px 20px 20px">
+        <div style="display:flex;align-items:flex-end;gap:10px;height:150px;border-bottom:2px solid #0b2545">
+          <sc-for list="{{ months }}" as="m" hint-placeholder-count="6">
+            <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:stretch;height:100%">
+              <div style="font:700 10px/1 'Archivo';color:rgba(11,37,69,.6);text-align:center;margin-bottom:5px">{{ m.short }}</div>
+              <div style="background:{{ m.color }};height:{{ m.h }}"></div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display:flex;gap:10px;margin-top:8px">
+          <sc-for list="{{ months }}" as="m" hint-placeholder-count="6">
+            <div style="flex:1;font:600 10px/1 'Archivo';color:rgba(11,37,69,.5);text-align:center">{{ m.label }}</div>
+          </sc-for>
+        </div>
+      </div>
+      </sc-if>
+
+      <sc-if value="{{ chartArea }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:12px 20px 20px">
+        <svg viewBox="0 0 320 150" width="100%" height="150" preserveAspectRatio="none" style="display:block;border-bottom:2px solid #0b2545">
+          <polygon points="{{ areaFill }}" fill="rgba(42,120,214,.16)"></polygon>
+          <polyline points="{{ areaLine }}" fill="none" stroke="#0b2545" stroke-width="2.5" stroke-linejoin="round"></polyline>
+          <line x1="0" y1="50" x2="320" y2="50" stroke="rgba(11,37,69,.18)" stroke-width="1"></line>
+          <line x1="0" y1="100" x2="320" y2="100" stroke="rgba(11,37,69,.18)" stroke-width="1"></line>
+        </svg>
+        <div style="display:flex;gap:10px;margin-top:8px">
+          <sc-for list="{{ months }}" as="m" hint-placeholder-count="6">
+            <div style="flex:1;font:600 10px/1 'Archivo';color:rgba(11,37,69,.5);text-align:center">{{ m.label }}</div>
+          </sc-for>
+        </div>
+      </div>
+      </sc-if>
+
+      <sc-if value="{{ chartRows }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:12px 20px 20px">
+        <sc-for list="{{ months }}" as="m" hint-placeholder-count="6">
+          <div style="display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid rgba(11,37,69,.13)">
+            <div style="width:34px;font:700 11px/1 'Archivo';color:rgba(11,37,69,.6);flex:none">{{ m.label }}</div>
+            <div style="flex:1;height:14px;background:rgba(11,37,69,.1);position:relative">
+              <div style="position:absolute;left:0;top:0;bottom:0;background:{{ m.color }};width:{{ m.h }}"></div>
+            </div>
+            <div style="width:62px;text-align:right;font:700 12px/1 'Archivo';color:#0b2545;flex:none">{{ m.value }}</div>
+          </div>
+        </sc-for>
+      </div>
+      </sc-if>
+
+      <div style="height:2px;background:rgba(11,37,69,.3)"></div>
+      <div style="padding:20px 20px 8px;font:700 10px/1 'Archivo';letter-spacing:.14em;text-transform:uppercase;color:rgba(11,37,69,.5)">Where it went</div>
+      <sc-for list="{{ topCats }}" as="c" hint-placeholder-count="4">
+        <div style="padding:12px 20px;display:flex;align-items:center;gap:12px;border-bottom:1px solid rgba(11,37,69,.13)">
+          <div style="width:10px;height:10px;flex:none;background:{{ c.color }}"></div>
+          <div style="flex:1;font:600 13.5px/1.2 'Archivo';color:#0b2545">{{ c.cat }}</div>
+          <div style="font:400 12px/1 'Archivo';color:rgba(11,37,69,.55);width:38px;text-align:right">{{ c.share }}</div>
+          <div style="font:700 13.5px/1 'Archivo';color:#0b2545;width:70px;text-align:right">{{ c.amount }}</div>
+        </div>
+      </sc-for>
+      <div style="height:16px"></div>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ isMore }}" hint-placeholder-val="{{ false }}">
+    <div>
+      <div style="padding:22px 20px;display:flex;align-items:center;gap:14px;border-bottom:2px solid #0b2545">
+        <div style="width:54px;height:54px;background:#0b2545;color:#fff;display:flex;align-items:center;justify-content:center;font:800 19px 'Archivo';flex:none">JR</div>
+        <div style="flex:1;min-width:0">
+          <div style="font:800 18px/1.15 'Archivo';letter-spacing:-.03em;color:#0b2545">Jordan Reyes</div>
+          <div style="font:400 12px/1.4 'Archivo';color:rgba(11,37,69,.55);margin-top:3px">jordan@reyes.co · 3 accounts linked</div>
+        </div>
+      </div>
+      <sc-for list="{{ settings }}" as="s" hint-placeholder-count="6">
+        <div style="padding:15px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(11,37,69,.13)">
+          <div>
+            <div style="font:600 14px/1.2 'Archivo';color:#0b2545">{{ s.label }}</div>
+            <div style="font:400 11.5px/1.4 'Archivo';color:rgba(11,37,69,.55);margin-top:3px">{{ s.meta }}</div>
+          </div>
+          <sc-if value="{{ s.isToggle }}" hint-placeholder-val="{{ true }}">
+            <div role="button" tabindex="0" onClick="{{ s.onToggle }}" style="width:44px;height:24px;flex:none;cursor:pointer;background:{{ s.trackBg }};position:relative;transition:background .15s">
+              <div style="position:absolute;top:3px;left:{{ s.knobLeft }};width:18px;height:18px;background:#fff;transition:left .15s"></div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ s.isLink }}" hint-placeholder-val="{{ false }}">
+            <div style="font:700 12px/1 'Archivo';color:#2a78d6">{{ s.value }}</div>
+          </sc-if>
+        </div>
+      </sc-for>
+      <div style="padding:22px 20px 26px">
+        <div role="button" tabindex="0" style="padding:13px 16px;border:2px solid #0b2545;font:800 13px/1 'Archivo';color:#0b2545;cursor:pointer;text-align:left">Sign out</div>
+      </div>
+    </div>
+    </sc-if>
+
+  </div>
+
+  <div style="flex:none;position:relative">
+    <div style="height:2px;background:#0b2545"></div>
+    <div style="display:flex;align-items:stretch">
+      <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="5">
+        <div role="button" tabindex="0" onClick="{{ t.onPick }}" style="flex:1;padding:11px 0 4px;display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;background:{{ t.bg }}">
+          <svg viewBox="0 0 24 24" width="21" height="21" fill="none" style="color:{{ t.fg }};display:block">
+            <path d="{{ t.icon }}" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+          <div style="font:700 9.5px/1 'Archivo';letter-spacing:.02em;color:{{ t.fg }}">{{ t.label }}</div>
+        </div>
+      </sc-for>
+    </div>
+    <div role="button" tabindex="0" onClick="{{ openAdd }}" style="position:absolute;right:18px;top:-64px;width:54px;height:54px;background:#2a78d6;box-shadow:0 4px 14px rgba(11,37,69,.28);display:flex;align-items:center;justify-content:center;cursor:pointer">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" style="color:#fff;display:block">
+        <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"></path>
+      </svg>
+    </div>
+  </div>
+
+  <sc-if value="{{ addOpen }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;inset:0;z-index:80;background:rgba(11,37,69,.45);display:flex;flex-direction:column;justify-content:flex-end">
+    <div role="button" tabindex="0" onClick="{{ closeAdd }}" style="flex:1;cursor:pointer"></div>
+    <div style="background:#fff;border-top:2px solid #0b2545;padding:20px 20px 30px">
+      <div style="display:flex;align-items:baseline;justify-content:space-between">
+        <div style="font:800 18px/1 'Archivo';letter-spacing:-.035em;color:#0b2545">New transaction</div>
+        <div role="button" tabindex="0" onClick="{{ closeAdd }}" style="font:700 12px/1 'Archivo';color:rgba(11,37,69,.55);cursor:pointer">Cancel</div>
+      </div>
+      <div style="margin-top:18px;padding-bottom:14px;border-bottom:2px solid #0b2545;display:flex;align-items:baseline;gap:4px">
+        <div style="font:800 34px/1 'Archivo';color:rgba(11,37,69,.35)">$</div>
+        <div style="font:800 44px/1 'Archivo';letter-spacing:-.05em;color:#0b2545">{{ draftAmount }}</div>
+      </div>
+      <div style="margin-top:16px;font:700 10px/1 'Archivo';letter-spacing:.14em;text-transform:uppercase;color:rgba(11,37,69,.5)">Category</div>
+      <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:8px">
+        <sc-for list="{{ catChips }}" as="c" hint-placeholder-count="6">
+          <div role="button" tabindex="0" onClick="{{ c.onPick }}" style="padding:8px 12px;font:700 12px/1 'Archivo';cursor:pointer;background:{{ c.bg }};color:{{ c.fg }};border:1px solid {{ c.bd }}">{{ c.label }}</div>
+        </sc-for>
+      </div>
+      <div style="margin-top:18px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+        <sc-for list="{{ keys }}" as="k" hint-placeholder-count="12">
+          <div role="button" tabindex="0" onClick="{{ k.onPress }}" style="padding:14px 0;text-align:center;font:700 19px/1 'Archivo';color:#0b2545;background:rgba(11,37,69,.06);cursor:pointer">{{ k.label }}</div>
+        </sc-for>
+      </div>
+      <div role="button" tabindex="0" onClick="{{ saveTx }}" style="margin-top:14px;padding:15px 16px;background:{{ saveBg }};color:#fff;font:800 14px/1 'Archivo';cursor:pointer;text-align:left">Save transaction</div>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ toast }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;left:20px;right:20px;bottom:96px;z-index:90;background:#0b2545;color:#fff;padding:13px 15px;font:600 12.5px/1.3 'Archivo';box-shadow:0 6px 20px rgba(11,37,69,.3)">{{ toast }}</div>
+  </sc-if>
+
+</div>
+</x-import>
+</div>
+
+<div class="dv-opt" id="1e"><div class="dv-olabel"><a class="dv-oid" href="#1e">1e</a>Home, alternative layout — ledger-first, balance demoted</div>
+<x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" hint-size="402px,874px">
+<div style="height:100%;box-sizing:border-box;padding:60px 0 24px;display:flex;flex-direction:column;background:#fff;overflow:hidden">
+  <div style="padding:0 20px 14px;display:flex;align-items:center;justify-content:space-between;flex:none">
+    <div style="font:800 26px/1 'Archivo';letter-spacing:-.045em;color:#0b2545">September</div>
+    <div style="display:flex;align-items:center;gap:10px">
+      <div style="font:700 11px/1 'Archivo';color:#2a78d6">Sep 2026</div>
+      <div style="width:28px;height:28px;background:rgba(11,37,69,.09);display:flex;align-items:center;justify-content:center;font:700 10px 'Archivo';color:#0b2545">JR</div>
+    </div>
+  </div>
+  <div style="height:2px;background:#0b2545;flex:none"></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;flex:none;border-bottom:2px solid rgba(11,37,69,.3)">
+    <div style="padding:18px 20px;border-right:1px solid rgba(11,37,69,.15)">
+      <div style="font:700 9.5px/1 'Archivo';letter-spacing:.14em;text-transform:uppercase;color:rgba(11,37,69,.5)">Spent</div>
+      <div style="font:800 26px/1 'Archivo';letter-spacing:-.04em;color:#0b2545;margin-top:9px">$2,096</div>
+    </div>
+    <div style="padding:18px 20px">
+      <div style="font:700 9.5px/1 'Archivo';letter-spacing:.14em;text-transform:uppercase;color:rgba(11,37,69,.5)">Left</div>
+      <div style="font:800 26px/1 'Archivo';letter-spacing:-.04em;color:#2a78d6;margin-top:9px">$1,124</div>
+    </div>
+  </div>
+  <div style="padding:16px 20px 12px;flex:none">
+    <div style="display:flex;height:16px">
+      <div style="width:24%;background:#0b2545"></div>
+      <div style="width:19%;background:#1d5285"></div>
+      <div style="width:14%;background:#2a78d6"></div>
+      <div style="width:11%;background:#6fa8e8"></div>
+      <div style="flex:1;background:rgba(11,37,69,.12)"></div>
+    </div>
+    <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:10px 16px">
+      <div style="display:flex;align-items:center;gap:6px;font:600 10.5px/1 'Archivo';color:rgba(11,37,69,.7)"><span style="width:9px;height:9px;background:#0b2545"></span>Bills</div>
+      <div style="display:flex;align-items:center;gap:6px;font:600 10.5px/1 'Archivo';color:rgba(11,37,69,.7)"><span style="width:9px;height:9px;background:#1d5285"></span>Groceries</div>
+      <div style="display:flex;align-items:center;gap:6px;font:600 10.5px/1 'Archivo';color:rgba(11,37,69,.7)"><span style="width:9px;height:9px;background:#2a78d6"></span>Dining</div>
+      <div style="display:flex;align-items:center;gap:6px;font:600 10.5px/1 'Archivo';color:rgba(11,37,69,.7)"><span style="width:9px;height:9px;background:#6fa8e8"></span>Transport</div>
+    </div>
+  </div>
+  <div style="flex:1;overflow:auto;border-top:2px solid rgba(11,37,69,.3)">
+    <sc-for list="{{ allGroups }}" as="g" hint-placeholder-count="3">
+      <div>
+        <div style="padding:10px 20px 8px;background:rgba(11,37,69,.05);font:700 10px/1 'Archivo';letter-spacing:.12em;text-transform:uppercase;color:rgba(11,37,69,.6);border-bottom:1px solid rgba(11,37,69,.13)">{{ g.date }}</div>
+        <sc-for list="{{ g.items }}" as="t" hint-placeholder-count="2">
+          <div style="padding:13px 20px;display:flex;align-items:baseline;gap:12px;border-bottom:1px solid rgba(11,37,69,.13)">
+            <div style="flex:1;min-width:0;font:600 14px/1.25 'Archivo';color:#0b2545;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ t.name }}</div>
+            <div style="font:400 11px/1 'Archivo';color:rgba(11,37,69,.5);flex:none">{{ t.cat }}</div>
+            <div style="font:700 14px/1 'Archivo';letter-spacing:-.02em;color:{{ t.amtColor }};width:74px;text-align:right;flex:none">{{ t.amt }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </sc-for>
+  </div>
+  <div style="flex:none;border-top:2px solid #0b2545;display:flex;align-items:stretch">
+    <div style="flex:1;padding:14px 20px;font:800 13px/1 'Archivo';color:#0b2545;display:flex;align-items:center">Ledger</div>
+    <div role="button" tabindex="0" onClick="{{ openAdd }}" style="width:120px;background:#2a78d6;color:#fff;font:800 13px/1 'Archivo';display:flex;align-items:center;padding:0 16px;cursor:pointer">Add</div>
+  </div>
+</div>
+</x-import>
+</div>
+
+<div class="dv-opt" id="1f"><div class="dv-olabel"><a class="dv-oid" href="#1f">1f</a>Chart language — three treatments, same data</div>
+<div class="dv-card" style="width:360px">
+  <div style="padding:20px 20px 16px;border-bottom:2px solid #0b2545">
+    <div style="font:700 10px/1 'Archivo';letter-spacing:.14em;text-transform:uppercase;color:rgba(11,37,69,.5)">A · Ruled columns</div>
+    <div style="margin-top:14px;display:flex;align-items:flex-end;gap:9px;height:110px;border-bottom:2px solid #0b2545">
+      <div style="flex:1;background:rgba(11,37,69,.18);height:52%"></div>
+      <div style="flex:1;background:rgba(11,37,69,.18);height:66%"></div>
+      <div style="flex:1;background:rgba(11,37,69,.18);height:44%"></div>
+      <div style="flex:1;background:rgba(11,37,69,.18);height:78%"></div>
+      <div style="flex:1;background:rgba(11,37,69,.18);height:61%"></div>
+      <div style="flex:1;background:#0b2545;height:70%"></div>
+    </div>
+    <div style="margin-top:8px;font:400 11px/1.5 'Archivo';color:rgba(11,37,69,.55)">Flat, honest, one column highlighted. Cheapest to read at a glance.</div>
+  </div>
+  <div style="padding:20px 20px 16px;border-bottom:2px solid #0b2545">
+    <div style="font:700 10px/1 'Archivo';letter-spacing:.14em;text-transform:uppercase;color:rgba(11,37,69,.5)">B · Line over gridlines</div>
+    <svg viewBox="0 0 320 110" width="100%" height="110" preserveAspectRatio="none" style="display:block;margin-top:14px;border-bottom:2px solid #0b2545">
+      <line x1="0" y1="37" x2="320" y2="37" stroke="rgba(11,37,69,.18)" stroke-width="1"></line>
+      <line x1="0" y1="74" x2="320" y2="74" stroke="rgba(11,37,69,.18)" stroke-width="1"></line>
+      <polygon points="0,110 0,58 64,42 128,68 192,26 256,48 320,34 320,110" fill="rgba(42,120,214,.15)"></polygon>
+      <polyline points="0,58 64,42 128,68 192,26 256,48 320,34" fill="none" stroke="#0b2545" stroke-width="2.5" stroke-linejoin="round"></polyline>
+      <circle cx="320" cy="34" r="4" fill="#2a78d6"></circle>
+    </svg>
+    <div style="margin-top:8px;font:400 11px/1.5 'Archivo';color:rgba(11,37,69,.55)">Shows momentum rather than totals. Best for trend copy.</div>
+  </div>
+  <div style="padding:20px 20px 20px">
+    <div style="font:700 10px/1 'Archivo';letter-spacing:.14em;text-transform:uppercase;color:rgba(11,37,69,.5)">C · Ranked rows</div>
+    <div style="margin-top:14px;display:flex;flex-direction:column">
+      <div style="display:flex;align-items:center;gap:11px;padding:7px 0;border-bottom:1px solid rgba(11,37,69,.13)">
+        <div style="width:30px;font:700 10.5px 'Archivo';color:rgba(11,37,69,.6)">Apr</div>
+        <div style="flex:1;height:12px;background:rgba(11,37,69,.1)"><div style="height:100%;width:52%;background:#1d5285"></div></div>
+        <div style="width:56px;text-align:right;font:700 11.5px 'Archivo';color:#0b2545">$1,712</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:11px;padding:7px 0;border-bottom:1px solid rgba(11,37,69,.13)">
+        <div style="width:30px;font:700 10.5px 'Archivo';color:rgba(11,37,69,.6)">May</div>
+        <div style="flex:1;height:12px;background:rgba(11,37,69,.1)"><div style="height:100%;width:66%;background:#1d5285"></div></div>
+        <div style="width:56px;text-align:right;font:700 11.5px 'Archivo';color:#0b2545">$2,174</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:11px;padding:7px 0;border-bottom:1px solid rgba(11,37,69,.13)">
+        <div style="width:30px;font:700 10.5px 'Archivo';color:rgba(11,37,69,.6)">Jun</div>
+        <div style="flex:1;height:12px;background:rgba(11,37,69,.1)"><div style="height:100%;width:44%;background:#1d5285"></div></div>
+        <div style="width:56px;text-align:right;font:700 11.5px 'Archivo';color:#0b2545">$1,449</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:11px;padding:7px 0;border-bottom:1px solid rgba(11,37,69,.13)">
+        <div style="width:30px;font:700 10.5px 'Archivo';color:rgba(11,37,69,.6)">Sep</div>
+        <div style="flex:1;height:12px;background:rgba(11,37,69,.1)"><div style="height:100%;width:70%;background:#2a78d6"></div></div>
+        <div style="width:56px;text-align:right;font:700 11.5px 'Archivo';color:#0b2545">$2,096</div>
+      </div>
+    </div>
+    <div style="margin-top:10px;font:400 11px/1.5 'Archivo';color:rgba(11,37,69,.55)">Exact figures always visible. Scales to any number of rows.</div>
+  </div>
+</div>
+</div>
+
+</div>
+<p class="dv-next">Try next: "make <a class="dv-oid" href="#1e">1e</a> the real home in the prototype" · "use the slot monogram from <a class="dv-oid" href="#1b">1b</a> everywhere" · "lock chart treatment C and drop the switcher"</p>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#2a78d6&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#2a78d6&quot;,&quot;#0b2545&quot;,&quot;#1d5285&quot;,&quot;#6fa8e8&quot;],&quot;section&quot;:&quot;Brand&quot;},&quot;strokeW&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:3,&quot;min&quot;:2,&quot;max&quot;:4.5,&quot;step&quot;:0.25,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Brand&quot;}}">
+const CAT = {
+  Bills: '#0b2545', Groceries: '#1d5285', Dining: '#2a78d6',
+  Transport: '#6fa8e8', Shopping: '#12395f', Fun: '#b9d3f2', Income: '#2a78d6'
+};
+
+class Component extends DCLogic {
+  state = {
+    screen: 'home',
+    filter: 'All',
+    chart: 'bars',
+    addOpen: false,
+    draft: '',
+    draftCat: 'Groceries',
+    toast: '',
+    roundUps: true,
+    alerts: true,
+    txs: [
+      { name: 'Whole Foods', cat: 'Groceries', v: -84.2, date: 'Today' },
+      { name: 'Lyft', cat: 'Transport', v: -12.4, date: 'Today' },
+      { name: 'Blue Bottle', cat: 'Dining', v: -6.75, date: 'Yesterday' },
+      { name: 'Alamo Drafthouse', cat: 'Fun', v: -28, date: 'Yesterday' },
+      { name: 'Trader Joe\u2019s', cat: 'Groceries', v: -41.1, date: 'Sep 4' },
+      { name: 'Uniqlo', cat: 'Shopping', v: -62, date: 'Sep 3' },
+      { name: 'Spotify', cat: 'Bills', v: -11.99, date: 'Sep 2' },
+      { name: 'Rent \u2014 Fillmore St', cat: 'Bills', v: -1850, date: 'Sep 1' },
+      { name: 'Salary \u2014 Acme Co', cat: 'Income', v: 4200, date: 'Sep 1' }
+    ]
+  };
+
+  money(v, sign) {
+    const a = Math.abs(v).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    if (!sign) return '$' + a;
+    return (v < 0 ? '\u2212$' : '+$') + a;
+  }
+  round(v) { return '$' + Math.round(Math.abs(v)).toLocaleString('en-US'); }
+
+  go(s) { return () => this.setState({ screen: s, addOpen: false }); }
+  chipStyle(active) {
+    return active
+      ? { bg: '#0b2545', fg: '#ffffff', bd: '#0b2545' }
+      : { bg: '#ffffff', fg: '#0b2545', bd: 'rgba(11,37,69,.28)' };
+  }
+
+  press(k) {
+    return () => this.setState(s => {
+      let d = s.draft;
+      if (k === '\u232B') d = d.slice(0, -1);
+      else if (k === '.') d = d.includes('.') ? d : (d === '' ? '0.' : d + '.');
+      else {
+        if (d.includes('.') && d.split('.')[1].length >= 2) return null;
+        if (d.replace('.', '').length >= 7) return null;
+        d = d === '0' ? k : d + k;
+      }
+      return { draft: d };
+    });
+  }
+
+  save = () => {
+    const n = parseFloat(this.state.draft);
+    if (!n || n <= 0) { this.flash('Enter an amount first.'); return; }
+    const tx = { name: this.state.draftCat + ' purchase', cat: this.state.draftCat, v: -n, date: 'Today' };
+    this.setState(s => ({ txs: [tx, ...s.txs], addOpen: false, draft: '', screen: 'home' }));
+    this.flash(this.money(-n, true).replace('\u2212', '') + ' logged to ' + this.state.draftCat + '.');
+  };
+
+  flash(msg) {
+    clearTimeout(this._t);
+    this.setState({ toast: msg });
+    this._t = setTimeout(() => this.setState({ toast: '' }), 2600);
+  }
+  componentWillUnmount() { clearTimeout(this._t); }
+
+  renderVals() {
+    const s = this.state;
+    const accent = this.props.accent ?? '#2a78d6';
+    const strokeW = this.props.strokeW ?? 3;
+    const spend = s.txs.filter(t => t.v < 0);
+    const monthSpent = spend.reduce((a, t) => a + Math.abs(t.v), 0);
+    const monthBudget = 3220;
+    const pct = Math.min(100, (monthSpent / monthBudget) * 100);
+
+    const shown = s.txs.filter(t => s.filter === 'All' ? true : s.filter === 'Income' ? t.v > 0 : t.v < 0);
+    const fmt = t => ({
+      name: t.name, cat: t.cat, date: t.date,
+      amt: this.money(t.v, true),
+      amtColor: t.v > 0 ? accent : '#0b2545',
+      color: CAT[t.cat] || '#0b2545'
+    });
+    const order = [];
+    const byDate = {};
+    shown.forEach(t => { if (!byDate[t.date]) { byDate[t.date] = []; order.push(t.date); } byDate[t.date].push(fmt(t)); });
+
+    const catTotals = {};
+    spend.forEach(t => { catTotals[t.cat] = (catTotals[t.cat] || 0) + Math.abs(t.v); });
+    const topCats = Object.keys(catTotals).sort((a, b) => catTotals[b] - catTotals[a]).slice(0, 5).map(c => ({
+      cat: c, color: CAT[c] || '#0b2545',
+      amount: this.round(catTotals[c]),
+      share: Math.round((catTotals[c] / monthSpent) * 100) + '%'
+    }));
+
+    const budgetPlan = [['Bills', 1900], ['Groceries', 600], ['Dining', 250], ['Shopping', 200], ['Transport', 150], ['Fun', 120]];
+    const budgets = budgetPlan.map(([cat, cap]) => {
+      const used = catTotals[cat] || 0;
+      return {
+        cat, color: used / cap > 0.9 ? accent : CAT[cat],
+        text: this.round(used) + ' of ' + this.round(cap),
+        pct: Math.min(100, (used / cap) * 100) + '%'
+      };
+    });
+    const capTotal = budgetPlan.reduce((a, b) => a + b[1], 0);
+
+    const raw = [['Apr', 1712], ['May', 2174], ['Jun', 1449], ['Jul', 2410], ['Aug', 1980], ['Sep', Math.round(monthSpent)]];
+    const max = Math.max.apply(null, raw.map(m => m[1]));
+    const months = raw.map((m, i) => ({
+      label: m[0], short: this.round(m[1]).replace('$', ''), value: this.round(m[1]),
+      h: Math.round((m[1] / max) * 100) + '%',
+      color: i === raw.length - 1 ? accent : 'rgba(11,37,69,.2)'
+    }));
+    const pts = raw.map((m, i) => (i * (320 / (raw.length - 1))) + ',' + (140 - (m[1] / max) * 120));
+
+    const titles = { home: 'Finance', spend: 'Activity', budget: 'Budget', insights: 'Insights', more: 'Account' };
+    const tabDef = [
+      ['home', 'Home', 'M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z'],
+      ['spend', 'Activity', 'M4 7h16M4 12h16M4 17h10'],
+      ['budget', 'Budget', 'M12 3v18M3 12h18M6.5 6.5l11 11'],
+      ['insights', 'Insights', 'M5 20V10M12 20V4M19 20v-7'],
+      ['more', 'Account', 'M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM4.5 21a7.5 7.5 0 0 1 15 0']
+    ];
+
+    return {
+      accent, strokeW,
+      screenTitle: titles[s.screen],
+      isHome: s.screen === 'home', isSpend: s.screen === 'spend', isBudget: s.screen === 'budget',
+      isInsights: s.screen === 'insights', isMore: s.screen === 'more',
+      goHome: this.go('home'), goSpend: this.go('spend'),
+      tabs: tabDef.map(([id, label, icon]) => ({
+        label, icon, onPick: this.go(id),
+        fg: s.screen === id ? '#0b2545' : 'rgba(11,37,69,.42)',
+        bg: s.screen === id ? 'rgba(11,37,69,.06)' : '#ffffff'
+      })),
+
+      balanceText: this.money(12480.65),
+      accounts: [
+        { name: 'Everyday Checking', meta: 'Chase · 4417', amount: this.money(3184.22) },
+        { name: 'Savings', meta: 'Chase · 8802', amount: this.money(9612.4) },
+        { name: 'Sapphire Card', meta: 'Statement Sep 24', amount: '\u2212' + this.money(315.97) }
+      ],
+      monthSpentText: this.round(monthSpent),
+      monthBudgetText: this.round(monthBudget),
+      monthPct: pct + '%',
+      monthPctText: Math.round(pct) + '% used',
+      recent: s.txs.slice(0, 3).map(fmt),
+
+      filters: ['All', 'Spending', 'Income'].map(f => {
+        const key = f === 'Spending' ? 'Spend' : f;
+        const st = this.chipStyle(s.filter === key);
+        return { label: f, onPick: () => this.setState({ filter: key }), bg: st.bg, fg: st.fg, bd: st.bd };
+      }),
+      filterCountText: shown.length + ' transactions',
+      filterSumText: this.round(shown.reduce((a, t) => a + Math.abs(t.v), 0)),
+      groups: order.map(d => ({ date: d, items: byDate[d] })),
+      allGroups: (() => {
+        const o = [], by = {};
+        s.txs.forEach(t => { if (!by[t.date]) { by[t.date] = []; o.push(t.date); } by[t.date].push(fmt(t)); });
+        return o.map(d => ({ date: d, items: by[d] }));
+      })(),
+
+      leftText: this.round(Math.max(0, capTotal - monthSpent)),
+      daysLeftText: '24 days left in the period · ' + this.round(Math.max(0, capTotal - monthSpent) / 24) + ' a day',
+      budgets,
+
+      chartModes: [['bars', 'Columns'], ['area', 'Line'], ['rows', 'Rows']].map(([id, label]) => {
+        const st = this.chipStyle(s.chart === id);
+        return { label, onPick: () => this.setState({ chart: id }), bg: st.bg, fg: st.fg, bd: st.bd };
+      }),
+      chartBars: s.chart === 'bars', chartArea: s.chart === 'area', chartRows: s.chart === 'rows',
+      months,
+      areaLine: pts.join(' '),
+      areaFill: '0,150 ' + pts.join(' ') + ' 320,150',
+      avgMonthText: this.round(raw.reduce((a, m) => a + m[1], 0) / raw.length),
+      topCats,
+
+      settings: [
+        { label: 'Round-ups to Savings', meta: 'Rounds each purchase to the next dollar', isToggle: true, isLink: false, onToggle: () => this.setState(p => ({ roundUps: !p.roundUps })), trackBg: s.roundUps ? '#0b2545' : 'rgba(11,37,69,.22)', knobLeft: s.roundUps ? '23px' : '3px' },
+        { label: 'Overspend alerts', meta: 'Notify at 90% of any category', isToggle: true, isLink: false, onToggle: () => this.setState(p => ({ alerts: !p.alerts })), trackBg: s.alerts ? '#0b2545' : 'rgba(11,37,69,.22)', knobLeft: s.alerts ? '23px' : '3px' },
+        { label: 'Linked accounts', meta: 'Chase, Amex, Ally', isToggle: false, isLink: true, value: 'Manage' },
+        { label: 'Categories', meta: '9 in use, 2 custom', isToggle: false, isLink: true, value: 'Edit' },
+        { label: 'Export data', meta: 'CSV or OFX, any date range', isToggle: false, isLink: true, value: 'Export' },
+        { label: 'Security', meta: 'Face ID, passcode, sessions', isToggle: false, isLink: true, value: 'Open' }
+      ],
+
+      addOpen: s.addOpen,
+      openAdd: () => this.setState({ addOpen: true }),
+      closeAdd: () => this.setState({ addOpen: false, draft: '' }),
+      draftAmount: s.draft === '' ? '0' : s.draft,
+      catChips: ['Groceries', 'Dining', 'Transport', 'Bills', 'Shopping', 'Fun'].map(c => {
+        const st = this.chipStyle(s.draftCat === c);
+        return { label: c, onPick: () => this.setState({ draftCat: c }), bg: st.bg, fg: st.fg, bd: st.bd };
+      }),
+      keys: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '.', '0', '\u232B'].map(k => ({ label: k, onPress: this.press(k) })),
+      saveTx: this.save,
+      saveBg: parseFloat(s.draft) > 0 ? accent : 'rgba(11,37,69,.35)',
+      toast: s.toast
+    };
+  }
+}
+</script>
+</body>
+</html>

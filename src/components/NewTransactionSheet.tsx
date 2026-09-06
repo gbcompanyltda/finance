@@ -7,7 +7,20 @@ import { useFinanceStore } from "@/lib/store";
 import { useUIStore } from "@/lib/uiStore";
 import { formatCurrency, todayISO } from "@/lib/format";
 
-const DEFAULT_CATS = ["mercado", "feira", "extra", "lazer", "transporte", "saúde"];
+const DEFAULT_CATS = [
+  "mercado",
+  "feira",
+  "extra",
+  "lazer",
+  "transporte",
+  "saúde",
+  "aluguel",
+  "internet",
+  "agua",
+  "luz",
+  "gas",
+  "outros",
+];
 const KEYS = ["1", "2", "3", "4", "5", "6", "7", "8", "9", ".", "0", "⌫"];
 
 function press(draft: string, key: string): string {
@@ -110,7 +123,9 @@ export function NewTransactionSheet() {
         </div>
 
         <div className="mt-[18px] flex items-baseline gap-1.5 border-b-2 border-[#0b2545] pb-[14px]">
-          <span className="text-[34px] font-extrabold leading-none text-(--save-disabled)">R$</span>
+          <span className="text-[34px] font-extrabold leading-none text-(--save-disabled)">
+            R$
+          </span>
           <span className="text-[44px] font-extrabold leading-none tracking-tight text-ink-primary tabular-nums">
             {draft === "" ? "0" : draft}
           </span>
