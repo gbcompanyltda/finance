@@ -53,11 +53,12 @@ export function NewTransactionSheet() {
   const categories = useMemo(() => {
     const seen = new Set<string>();
     const list: string[] = [];
+    // categorias fixas primeiro, depois as tags já usadas no mês
     for (const cat of [
+      ...DEFAULT_CATS,
       ...(month?.expenses ?? [])
         .filter((e) => e.kind === "variavel" && e.tag?.trim())
         .map((e) => e.tag!.trim()),
-      ...DEFAULT_CATS,
     ]) {
       const key = cat.toLowerCase();
       if (!seen.has(key)) {
@@ -65,7 +66,7 @@ export function NewTransactionSheet() {
         list.push(cat);
       }
     }
-    return list.slice(0, 8);
+    return list;
   }, [month]);
 
   const amount = parseFloat(draft);
