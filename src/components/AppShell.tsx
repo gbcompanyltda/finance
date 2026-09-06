@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
-import { Plus } from "lucide-react";
+import { Plus, RefreshCw } from "lucide-react";
 import { BottomNav } from "./BottomNav";
 import { LoginScreen } from "./LoginScreen";
 import { LoadingScreen } from "./LoadingScreen";
@@ -12,6 +12,7 @@ import { Avatar, initialsFrom } from "./ui/kit";
 import { useFinanceStore } from "@/lib/store";
 import { useAuthStore } from "@/lib/authStore";
 import { useUIStore } from "@/lib/uiStore";
+import { usePullToRefresh } from "@/lib/usePullToRefresh";
 
 const TITLES: Record<string, string> = {
   "/": "Início",
@@ -32,6 +33,16 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   const openAdd = useUIStore((s) => s.openAdd);
   const closeAdd = useUIStore((s) => s.closeAdd);
   const toast = useUIStore((s) => s.toast);
+
+  const mainRef = useRef<HTMLElement>(null);
+  const handleRefresh = useCallback(() => {
+    window.location.reload();
+  }, []);
+  const { pull, refreshing, threshold } = usePullToRefresh(
+    mainRef,
+    handleRefresh,
+    !addOpen
+  );
 
   const userId = session?.user.id;
   useEffect(() => {
@@ -66,7 +77,33 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         <div className="rule" />
       </header>
 
-      <main className="min-h-0 flex-1 overflow-y-auto overscroll-contain">{children}</main>
+      <main
+        ref={mainRef}
+        className="relative min-h-0 flex-1 overflow-y-auto overscroll-contain"
+      >
+        <div
+          className="pointer-events-none absolute inset-x-0 top-0 z-10 flex justify-center"
+          style={{
+            transform: `translateY(${pull - 30}px)`,
+            opacity: Math.min(1, pull / threshold),
+          }}
+          aria-hidden
+        >
+          <RefreshCw
+            size={20}
+            className={`mt-2 text-ink-secondary ${refreshing ? "animate-spin" : ""}`}
+            style={{ transform: refreshing ? undefined : `rotate(${pull * 2.5}deg)` }}
+          />
+        </div>
+        <div
+          style={{
+            transform: pull ? `translateY(${pull}px)` : undefined,
+            transition: pull ? "none" : "transform 0.2s ease-out",
+          }}
+        >
+          {children}
+        </div>
+      </main>
 
       <BottomNav />
 

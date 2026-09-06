@@ -53,7 +53,6 @@ export function NewTransactionSheet() {
   const categories = useMemo(() => {
     const seen = new Set<string>();
     const list: string[] = [];
-    // categorias fixas primeiro, depois as tags já usadas no mês
     for (const cat of [
       ...DEFAULT_CATS,
       ...(month?.expenses ?? [])
@@ -107,9 +106,9 @@ export function NewTransactionSheet() {
         type="button"
         aria-label="Fechar"
         onClick={close}
-        className="flex-1"
+        className="flex-1 min-h-[40px]"
       />
-      <div className="sheet-in border-t-2 border-[#0b2545] bg-white px-5 pb-[max(1.875rem,env(safe-area-inset-bottom))] pt-5">
+      <div className="sheet-in border-t-2 border-[#0b2545] bg-white px-5 pb-[max(1.875rem,env(safe-area-inset-bottom))] pt-5 max-h-[90vh] overflow-y-auto">
         <div className="flex items-baseline justify-between">
           <h2 className="text-lg font-extrabold tracking-tight text-ink-primary">
             Nova transação
@@ -133,7 +132,9 @@ export function NewTransactionSheet() {
         </div>
 
         <p className="kicker mt-4">Categoria</p>
-        <div className="mt-2.5 flex flex-wrap gap-2">
+        
+        {/* Adicionado max-h e overflow-y-auto para permitir rolagem no container de tags */}
+        <div className="mt-2.5 flex flex-wrap gap-2 max-h-36 overflow-y-auto pr-1">
           {categories.map((cat) => {
             const active = cat.toLowerCase() === draftCat.toLowerCase();
             return (
