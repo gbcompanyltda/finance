@@ -19,7 +19,7 @@ export function Sidebar({ onSignOut }: { onSignOut?: () => void }) {
   const pathname = usePathname();
 
   return (
-    <aside className="hidden w-56 shrink-0 flex-col border-r border-border bg-surface p-4 md:flex">
+    <aside className="sticky top-0 hidden h-screen w-56 shrink-0 flex-col self-start overflow-y-auto border-r border-border bg-surface p-4 md:flex">
       <div className="mb-6 flex items-center gap-2 px-2">
         <Wallet className="size-5 text-series-1" aria-hidden />
         <span className="text-sm font-semibold text-ink-primary">

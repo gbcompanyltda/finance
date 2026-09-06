@@ -7,6 +7,7 @@ import { BottomNav } from "./BottomNav";
 import { MonthSwitcher } from "./MonthSwitcher";
 import { NewMonthModal } from "./NewMonthModal";
 import { LoginScreen } from "./LoginScreen";
+import { LoadingScreen } from "./LoadingScreen";
 import { useFinanceStore } from "@/lib/store";
 import { useAuthStore } from "@/lib/authStore";
 import { monthIdToLabel } from "@/lib/format";
@@ -30,20 +31,12 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     }
   }, [userId, loadForUser, resetFinance]);
 
-  if (authLoading) {
-    return <div className="min-h-screen bg-page" />;
+  if (authLoading || (session && !ready)) {
+    return <LoadingScreen />;
   }
 
   if (!session) {
     return <LoginScreen />;
-  }
-
-  if (!ready) {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-page text-sm text-ink-muted">
-        Carregando…
-      </div>
-    );
   }
 
   return (
